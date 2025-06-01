@@ -1,7 +1,13 @@
+import F4ALogo from '@/assets/favicon.svg';
 export const WebsiteConfig = {
-    title: 'My Awesome Website',
-    description: 'This is a sample website built with Next.js and TypeScript.',
-    menu: [
+    metadata: {
+        title: 'FOSS for All Conference 2025',
+        description: 'This is a sample website built with Next.js and TypeScript.',
+        faviconSrc: F4ALogo.src,
+    },
+    navigation:{
+        logoSrc: F4ALogo.src,
+         menu: [
         {
             label: "소개", href: "/", items: [
                 { label: "행사 소개", href: "/about" },
@@ -30,4 +36,6 @@ export const WebsiteConfig = {
             ],
         },
     ]
+    },
+   
 }

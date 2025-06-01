@@ -10,14 +10,14 @@ import { WebsiteConfig } from "@/config";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href={WebsiteConfig.metadata.faviconSrc} />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{WebsiteConfig.metadata.title}</title>
 	</head>
 	<body>
 		<Header
 			logoSvg={F4ALogo.src}
-			menu={WebsiteConfig.menu}
+			menu={WebsiteConfig.navigation.menu}
 		/>
 		<slot />
 	</body>
