@@ -15,8 +15,10 @@ const t = useTranslations(Astro.currentLocale as keyof typeof ui);
 <Layout>
 <section class="hero is-large">
   <div class="hero-body">
-    <p class="title">Coexist with Open Source</p>
-    <p class="subtitle">2025년 11월 8일 광운대학교</p>
+    <h1 class="title is-size-1 mb-0">FOSS for All Conference</h1>
+    <h1 class="is-size-1">Coexist with Open Source</h1>
+    <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1> 
+    <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1> 
   </div>
 </section>
 </Layout>
