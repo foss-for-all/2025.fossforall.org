@@ -1,24 +1,38 @@
 ---
-import { useTranslations } from '@/i18n/utils';
-import type { ui } from '@/i18n/ui';
-import { languages } from  '@/i18n/ui';
- import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from "@/i18n/utils";
+import type { ui } from "@/i18n/ui";
+import { languages } from "@/i18n/ui";
+import Layout from "@/layouts/Layout.astro";
+import Pictogram from "@/assets/pictogram.svg";
 export function getStaticPaths() {
-    const languageKeys = Object.keys(languages);
-	return languageKeys.map((lang) => {
-        return { params: { lang } };
-    });
+  const languageKeys = Object.keys(languages);
+  return languageKeys.map((lang) => {
+    return { params: { lang } };
+  });
 }
 const t = useTranslations(Astro.currentLocale as keyof typeof ui);
 ---
 
 <Layout>
-<section class="hero is-large">
-  <div class="hero-body">
-    <h1 class="title is-size-1 mb-0">FOSS for All Conference</h1>
-    <h1 class="is-size-1">Coexist with Open Source</h1>
-    <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1> 
-    <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1> 
-  </div>
-</section>
+  <section class="hero is-medium">
+    <div class="fixed-grid has-1-cols-mobile has-1-cols-tablet has-2-cols-desktop has-2-cols">
+      <div class="grid">
+        <div class="cell">
+          <div class="hero-body">
+            <h1 class="title is-size-1 mb-0">FOSS for All Conference</h1>
+            <h1 class="is-size-1">Coexist with Open Source</h1>
+            <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1>
+            <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1>
+          </div>
+        </div>
+        <div class="cell">
+          <img
+            src={Pictogram.src}
+            alt="FOSS for All Pictogram"
+            style="margin-top: 50px; max-width: 80vw; max-height: 800px"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
