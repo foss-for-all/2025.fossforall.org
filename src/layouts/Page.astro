@@ -1,0 +1,49 @@
+---
+import "@/styles/global.scss";
+import Header from "@/components/Header.astro";
+import F4ALogo from "@/assets/favicon.svg";
+import { WebsiteConfig } from "@/config";
+import type { MarkdownLayoutProps } from 'astro';
+type Props = MarkdownLayoutProps<{
+  // Define frontmatter props here
+  title: string;
+  description: string;
+}>;
+
+
+const { frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href={WebsiteConfig.metadata.faviconSrc}
+		/>
+		<meta name="generator" content={Astro.generator} />
+		<title>{WebsiteConfig.metadata.title}</title>
+	</head>
+	<body>
+		<Header logoSvg={F4ALogo.src} menu={WebsiteConfig.navigation.menu} />
+		<section class="section">
+			<h1 class="title">{frontmatter.title}</h1>
+			<h2 class="subtitle">
+				{frontmatter.description}
+			</h2>
+		</section>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
