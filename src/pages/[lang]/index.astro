@@ -1,0 +1,22 @@
+---
+import { useTranslations } from '@/i18n/utils';
+import type { ui } from '@/i18n/ui';
+import { languages } from  '@/i18n/ui';
+ import Layout from '@/layouts/Layout.astro';
+export function getStaticPaths() {
+    const languageKeys = Object.keys(languages);
+	return languageKeys.map((lang) => {
+        return { params: { lang } };
+    });
+}
+const t = useTranslations(Astro.currentLocale as keyof typeof ui);
+---
+
+<Layout>
+<section class="hero is-large">
+  <div class="hero-body">
+    <p class="title">Coexist with Open Source</p>
+    <p class="subtitle">2025년 11월 8일 광운대학교</p>
+  </div>
+</section>
+</Layout>
