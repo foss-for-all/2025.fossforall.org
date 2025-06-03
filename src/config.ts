@@ -49,6 +49,10 @@ export const WebsiteConfig = {
             }));
             return [
                 {
+                    label: 'fossforall.org',
+                    href: "https://fossforall.org",
+                },
+                {
                     label: '🌐',
                     items: langPickerItems
                 }
