@@ -3,15 +3,15 @@ import "@/styles/global.scss";
 import Header from "@/components/Header.astro";
 import F4ALogo from "@/assets/favicon.svg";
 import { WebsiteConfig } from "@/config";
-import type { MarkdownLayoutProps } from 'astro';
+import type { MarkdownLayoutProps } from "astro";
 type Props = MarkdownLayoutProps<{
-  // Define frontmatter props here
-  title: string;
-  description: string;
+	// Define frontmatter props here
+	title: string;
+	description: string;
 }>;
 
-
 const { frontmatter } = Astro.props;
+const curentLocale = Astro.currentLocale || "ko";
 ---
 
 <!doctype html>
@@ -28,14 +28,20 @@ const { frontmatter } = Astro.props;
 		<title>{WebsiteConfig.metadata.title}</title>
 	</head>
 	<body>
-		<Header logoSvg={F4ALogo.src} menu={WebsiteConfig.navigation.menu} />
+		<Header logoSvg={F4ALogo.src} menu={WebsiteConfig.navigation.menu(curentLocale)} />
+		<div class="container">
 		<section class="section">
 			<h1 class="title">{frontmatter.title}</h1>
 			<h2 class="subtitle">
 				{frontmatter.description}
 			</h2>
 		</section>
-		<slot />
+		<section class="section">
+			<div class="content">
+				<slot />
+			</div>
+		</section>
+		</div>
 	</body>
 </html>
 
