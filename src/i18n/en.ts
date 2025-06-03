@@ -1,5 +1,5 @@
 export default {
-    localeName: "English",
+    localeName: "English (EN)",
     locale: {
     'nav.home': 'Home',
     'nav.about': 'About',

@@ -1,5 +1,5 @@
 export default {
-    localeName: "한국어",
+    localeName: "한국어 (KO)",
     locale: {
     'nav.home': '홈',
     'nav.about': 'About',

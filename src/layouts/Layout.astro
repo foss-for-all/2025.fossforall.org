@@ -4,7 +4,10 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import F4ALogo from "@/assets/favicon.svg";
 import { WebsiteConfig } from "@/config";
-const curentLocale = Astro.currentLocale || "ko";
+import { getUrlWithoutLang } from "@/i18n/utils";
+import type { ui } from "@/i18n/ui";
+const curentLocale = Astro.currentLocale;
+const page = getUrlWithoutLang(Astro.url);
 type Props = {
 	// Define frontmatter props here
 	title?: string;
@@ -26,7 +29,8 @@ const { title, description } = Astro.props as Props;
 	<body>
 		<Header
 			logoSvg={F4ALogo.src}
-			menu={WebsiteConfig.navigation.menu(curentLocale)}
+			menu={WebsiteConfig.navigation.menu(curentLocale as keyof typeof ui)}
+			rightMenu={WebsiteConfig.navigation.rightMenu(curentLocale as keyof typeof ui, page)}
 		/>
 		<slot />
 		<Footer/>

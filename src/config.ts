@@ -1,6 +1,7 @@
 import F4ALogo from '@/assets/favicon.svg';
 import type { ui } from "@/i18n/ui";
 import { useTranslations } from "@/i18n/utils";
+import { languages } from '@/i18n/ui';
 
 export const WebsiteConfig = {
     metadata: {
@@ -39,6 +40,18 @@ export const WebsiteConfig = {
                         { label: "개인후원", href: `/${locale}/patrons` },
                     ],
                 },
+            ]
+        },
+        rightMenu: (locale: keyof typeof ui, page: { path: string, i18n: boolean }) => {
+            const t = useTranslations(locale);
+            const langPickerItems = Object.entries(languages).map(([lang, label]) => ({
+                label: label, href: page.i18n ? `/${lang}${page.path}` : `${page.path}`
+            }));
+            return [
+                {
+                    label: '🌐',
+                    items: langPickerItems
+                }
             ]
         }
     },

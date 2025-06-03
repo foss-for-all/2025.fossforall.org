@@ -21,7 +21,7 @@ const {
   logoHref = `/${Astro.currentLocale || "ko"}/`,
   logoSvg = undefined,
   menu = [],
-  buttons = [],
+  rightMenu = [],
 } = Astro.props;
 ---
 
@@ -89,22 +89,41 @@ const {
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          {
-            buttons.map((btn: ButtonItem) => (
-              <a
-                class={["button", btn.primary ? "is-primary" : "is-light"].join(
-                  " ",
+      {
+        rightMenu.map((item: MenuItem) =>
+          item.items ? (
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">{item.label}</a>
+              <div class="navbar-dropdown is-boxed is-right">
+                {item.items.map((item: DropdownItem, idx: number) =>
+                  item.divider ? (
+                    <hr class="navbar-divider" />
+                  ) : (
+                    <a
+                      class={[
+                        "navbar-item",
+                        item.selected ? "is-selected" : "",
+                      ].join(" ")}
+                      href={item.href}
+                    >
+                      {item.label}
+                    </a>
+                  ),
                 )}
-                href={btn.href}
-              >
-                {btn.primary ? <strong>{btn.label}</strong> : btn.label}
-              </a>
-            ))
-          }
-        </div>
-      </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              class={["navbar-item", item.selected ? "is-selected" : ""].join(
+                " ",
+              )}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ),
+        )
+      }
     </div>
   </div>
 </nav>
