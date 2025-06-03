@@ -8,5 +8,9 @@ export default {
     'home.hero.venue': 'Kwangwoon University',
     'home.hero.cfp': 'Submit proposals (Coming soon)',
     'home.hero.sponsor': 'Become a sponsor',
+    'footer.copyright': '© 2025-Present FOSS for All. Unless otherwise noted, content licensed under CC BY 4.0 source code under MIT.',
+    'footer.contactEmail': 'Contact us via email',
+    'footer.sourceCode': 'See Source code',
+    'footer.learnMore': 'Learn more about FOSS for All',
   },
 }

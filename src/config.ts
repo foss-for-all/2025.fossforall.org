@@ -1,12 +1,14 @@
 import F4ALogo from '@/assets/favicon.svg';
+import type { ui } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+
 export const WebsiteConfig = {
     metadata: {
         title: 'FOSS for All Conference 2025',
         description: 'This is a sample website built with Next.js and TypeScript.',
         faviconSrc: F4ALogo.src,
     },
-    navigation:
-    {
+    navigation: {
         logoSrc: F4ALogo.src,
         menu: (locale: string) => {
             return [
@@ -40,5 +42,16 @@ export const WebsiteConfig = {
             ]
         }
     },
+    footer: (locale: keyof typeof ui) => {
+        const t = useTranslations(locale);
+        return {
+            copyright: t('footer.copyright'),
+            links: [
+                { label: t('footer.contactEmail'), href: "mailto:contact@fossforall.org" },
+                { label: t('footer.sourceCode'), href: "https://github.com/foss-for-all/2025.fossforall.org" },
+                { label: t('footer.learnMore'), href: "https://fossforall.org" },
+            ]
+        }
+    }
 
 }

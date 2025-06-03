@@ -1,0 +1,30 @@
+---
+import { WebsiteConfig } from "@/config";
+import type { ui } from "@/i18n/ui";
+const currentLocale = Astro.currentLocale;
+---
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>{WebsiteConfig.metadata.title}</strong>
+        </p>
+        <p>
+            {WebsiteConfig.footer(currentLocale as keyof typeof ui).copyright}
+        </p>
+        {
+            WebsiteConfig.footer(currentLocale as keyof typeof ui).links.map(
+                (link) => (
+                    <a href={link.href}>
+                        <span class="icon-text">
+                            <span>{link.label}</span>
+                            <span class="icon" style="margin-right: 0.5rem;">
+                                <i class="fas fa-link"></i>
+                            </span>
+                        </span>
+                    </a>
+                ),
+            )
+        }
+    </div>
+</footer>
