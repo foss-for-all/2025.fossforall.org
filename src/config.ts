@@ -12,32 +12,33 @@ export const WebsiteConfig = {
     navigation: {
         logoSrc: F4ALogo.src,
         menu: (locale: string) => {
+            const t = useTranslations(locale as keyof typeof ui);
             return [
                 {
-                    label: "소개", href: `/${locale}/`, items: [
-                        { label: "행사 소개", href: `/${locale}/about` },
-                        { label: "행동강령", href: `/${locale}/coc` },
-                        { label: "행사장 & 안전정보", href: `/${locale}/venue-safety` },
+                    label: t("nav.about"), href: `/${locale}/`, items: [
+                        { label: t("nav.about"), href: `/${locale}/about` },
+                        { label: t("nav.coc"), href: `/${locale}/coc` },
+                        { label: t("nav.venueSafety"), href: `/${locale}/venue-safety` },
                     ],
                 },
                 {
-                    label: "프로그램",
+                    label: t("nav.programs"),
                     href: "#",
                     items: [
-                        { label: "발표/전시 지원", href: `/${locale}/cfp` },
+                        { label: t("nav.cfp"), href: `/${locale}/cfp` },
                         { divider: true },
-                        { label: "일정표", href: `/${locale}/schedules` },
-                        { label: "전시", href: `/${locale}/exhibitions` },
-                        { label: "부대행사", href: `/${locale}/social-events` },
+                        { label: t("nav.schedules"), href: `/${locale}/schedules` },
+                        { label: t("nav.schedules"), href: `/${locale}/exhibitions` },
+                        { label: t("nav.socialEvents"), href: `/${locale}/social-events` },
                     ],
                 },
                 {
-                    label: "후원사/개인후원",
+                    label: t("nav.sponsorsPatrons"),
                     href: "#",
                     items: [
-                        { label: "후원사로 참여하기", href: `/${locale}/become-a-sponsor` },
-                        { label: "참여 후원사", href: `/${locale}/sponsors` },
-                        { label: "개인후원", href: `/${locale}/patrons` },
+                        { label: t("nav.becomeSponsor"), href: `/${locale}/become-a-sponsor` },
+                        { label: t("nav.sponsors"), href: `/${locale}/sponsors` },
+                        { label: t("nav.patrons"), href: `/${locale}/patrons` },
                     ],
                 },
             ]
