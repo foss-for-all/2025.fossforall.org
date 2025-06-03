@@ -18,26 +18,10 @@ export interface ButtonItem {
   primary?: boolean;
 }
 const {
-  logoHref = "https://bulma.io",
+  logoHref = `/${Astro.currentLocale || "ko"}/`,
   logoSvg = undefined,
-  menu = [
-    { label: "About", href: "/" },
-    { label: "Program", href: "/docs" },
-    {
-      label: "More",
-      items: [
-        { label: "About", href: "/about" },
-        { label: "Jobs", href: "/jobs" },
-        { label: "Contact", href: "/contact" },
-        { divider: true },
-        { label: "Report an issue", href: "/report" },
-      ],
-    },
-  ],
-  buttons = [
-    { label: "Sign up", href: "/signup", primary: true },
-    { label: "Log in", href: "/login", primary: false },
-  ],
+  menu = [],
+  buttons = [],
 } = Astro.props;
 ---
 
@@ -126,25 +110,24 @@ const {
 </nav>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(
+      document.querySelectorAll(".navbar-burger"),
+      0,
+    );
 
-  // Get all "navbar-burger" elements
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    // Add a click event on each of them
+    $navbarBurgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
 
-  // Add a click event on each of them
-  $navbarBurgers.forEach( el => {
-    el.addEventListener('click', () => {
-
-      // Get the target from the "data-target" attribute
-      const target = el.dataset.target;
-      const $target = document.getElementById(target);
-
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      el.classList.toggle('is-active');
-      $target.classList.toggle('is-active');
-
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
+      });
     });
   });
-
-});
 </script>

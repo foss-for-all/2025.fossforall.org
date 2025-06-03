@@ -5,37 +5,40 @@ export const WebsiteConfig = {
         description: 'This is a sample website built with Next.js and TypeScript.',
         faviconSrc: F4ALogo.src,
     },
-    navigation:{
+    navigation:
+    {
         logoSrc: F4ALogo.src,
-         menu: [
-        {
-            label: "소개", href: "/", items: [
-                { label: "행사 소개", href: "/about" },
-                { label: "행동강령", href: "/coc" },
-                { label: "행사장 & 안전정보", href: "/venue-safety" },
-            ],
-        },
-        {
-            label: "프로그램",
-            href: "/docs",
-            items: [
-                { label: "발표/전시 지원", href: "/cfp" },
-                { divider: true },
-                { label: "일정표", href: "/schedules" },
-                { label: "전시", href: "/exhibitions" },
-                { label: "부대행사", href: "/social-events" },
-            ],
-        },
-        {
-            label: "후원사/개인후원",
-            href: "/docs",
-            items: [
-                { label: "후원사로 참여하기", href: "/become-a-sponsor" },
-                { label: "참여 후원사", href: "/sponsors" },
-                { label: "개인후원", href: "/patrons" },
-            ],
-        },
-    ]
+        menu: (locale: string) => {
+            return [
+                {
+                    label: "소개", href: `/${locale}/`, items: [
+                        { label: "행사 소개", href: `/${locale}/about` },
+                        { label: "행동강령", href: `/${locale}/coc` },
+                        { label: "행사장 & 안전정보", href: `/${locale}/venue-safety` },
+                    ],
+                },
+                {
+                    label: "프로그램",
+                    href: "#",
+                    items: [
+                        { label: "발표/전시 지원", href: `/${locale}/cfp` },
+                        { divider: true },
+                        { label: "일정표", href: `/${locale}/schedules` },
+                        { label: "전시", href: `/${locale}/exhibitions` },
+                        { label: "부대행사", href: `/${locale}/social-events` },
+                    ],
+                },
+                {
+                    label: "후원사/개인후원",
+                    href: "#",
+                    items: [
+                        { label: "후원사로 참여하기", href: `/${locale}/become-a-sponsor` },
+                        { label: "참여 후원사", href: `/${locale}/sponsors` },
+                        { label: "개인후원", href: `/${locale}/patrons` },
+                    ],
+                },
+            ]
+        }
     },
-   
+
 }

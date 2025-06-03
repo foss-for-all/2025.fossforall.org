@@ -3,6 +3,7 @@ import "@/styles/global.scss";
 import Header from "@/components/Header.astro";
 import F4ALogo from "@/assets/favicon.svg";
 import { WebsiteConfig } from "@/config";
+const curentLocale = Astro.currentLocale || "ko";
 ---
 
 <!doctype html>
@@ -17,7 +18,7 @@ import { WebsiteConfig } from "@/config";
 	<body>
 		<Header
 			logoSvg={F4ALogo.src}
-			menu={WebsiteConfig.navigation.menu}
+			menu={WebsiteConfig.navigation.menu(curentLocale)}
 		/>
 		<slot />
 	</body>
