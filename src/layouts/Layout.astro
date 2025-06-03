@@ -5,6 +5,12 @@ import Footer from "@/components/Footer.astro";
 import F4ALogo from "@/assets/favicon.svg";
 import { WebsiteConfig } from "@/config";
 const curentLocale = Astro.currentLocale || "ko";
+type Props = {
+	// Define frontmatter props here
+	title?: string;
+	description?: string;
+};
+const { title, description } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -14,7 +20,8 @@ const curentLocale = Astro.currentLocale || "ko";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href={WebsiteConfig.metadata.faviconSrc} />
 		<meta name="generator" content={Astro.generator} />
-		<title>{WebsiteConfig.metadata.title}</title>
+		<title>{title ? `${title} | ${WebsiteConfig.metadata.title}` : WebsiteConfig.metadata.title}</title>
+		<meta name="description" content={description || WebsiteConfig.metadata.description} />
 	</head>
 	<body>
 		<Header

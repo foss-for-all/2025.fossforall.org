@@ -5,7 +5,7 @@ import { useTranslations } from "@/i18n/utils";
 export const WebsiteConfig = {
     metadata: {
         title: 'FOSS for All Conference 2025',
-        description: 'This is a sample website built with Next.js and TypeScript.',
+        description: '2025년 11월 8일 광운대학교',
         faviconSrc: F4ALogo.src,
     },
     navigation: {
