@@ -11,6 +11,7 @@ export function getStaticPaths() {
   });
 }
 const t = useTranslations(Astro.currentLocale as keyof typeof ui);
+const currentLang = Astro.currentLocale as keyof typeof ui;
 ---
 
 <Layout>
@@ -18,19 +19,22 @@ const t = useTranslations(Astro.currentLocale as keyof typeof ui);
     <div class="fixed-grid has-1-cols-mobile has-1-cols-tablet has-2-cols-desktop has-2-cols">
       <div class="grid">
         <div class="cell">
-          <div class="hero-body">
-            <h1 class="title is-size-1 mb-0">FOSS for All Conference</h1>
-            <h1 class="is-size-1">Coexist with Open Source</h1>
-            <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1>
-            <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1>
-          </div>
-        </div>
-        <div class="cell">
           <img
             src={Pictogram.src}
             alt="FOSS for All Pictogram"
             style="margin-top: 50px; max-width: 80vw; max-height: 800px"
           />
+        </div>
+        <div class="cell">
+          <div class="hero-body">
+            <h1 class="title is-size-1 mb-0">FOSS for All Conference</h1>
+            <h1 class="is-size-1">Coexist with Open Source</h1>
+            <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1>
+            <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1>
+            <hr/>
+            <a class="button is-large is-link">{`${t("home.hero.cfp")}`}</a>
+            <a class="button is-large" href={`/${currentLang}/become-a-sponsor`}>{`${t("home.hero.sponsor")}`}</a>            
+          </div>
         </div>
       </div>
     </div>
