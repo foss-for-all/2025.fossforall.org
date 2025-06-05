@@ -28,7 +28,7 @@ export const WebsiteConfig = {
                         { label: t("nav.cfp"), href: `/${locale}/cfp` },
                         { divider: true },
                         { label: t("nav.schedules"), href: `/${locale}/schedules` },
-                        { label: t("nav.schedules"), href: `/${locale}/exhibitions` },
+                        { label: t("nav.exhibitions"), href: `/${locale}/exhibitions` },
                         { label: t("nav.socialEvents"), href: `/${locale}/social-events` },
                     ],
                 },
