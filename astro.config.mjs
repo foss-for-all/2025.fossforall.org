@@ -13,9 +13,6 @@ export default defineConfig({
     fallback: {
       en: "ko"
     },
-    routing: {
-      fallbackType: "rewrite",
-        prefixDefaultLocale: true
-    }
+    routing: "manual"
   }
 });
