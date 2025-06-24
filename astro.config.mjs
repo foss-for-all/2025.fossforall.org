@@ -18,5 +18,8 @@ export default defineConfig({
         prefixDefaultLocale: true,
         redirectToDefaultLocale: false,
     }
+  },
+  redirects: {
+    "/": "/ko",
   }
 });
