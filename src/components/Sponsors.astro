@@ -1,0 +1,31 @@
+---
+import { SponsorLogoWithModal } from "@/components/SponsorLogoWithModal";
+import { SponsorsList } from "@/data/sponsors";
+---
+
+{
+    SponsorsList.map((group) => (
+        <div>
+            <h2 class="title is-size-3 mt-5 mb-3">{group.sponsorClassName}</h2>
+            <div class={`fixed-grid ${group.gridClasses}`}>
+                <div class="grid">
+                    {group.items.map((item) => (
+                        <div class="cell">
+                            <div class="card">
+                                <div class="card-content">
+                                    <SponsorLogoWithModal
+                                        client:load
+                                        item={item}
+                                        group={{
+                                            imageHeight: group.imageHeight,
+                                        }}
+                                    />
+                                </div>  
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    ))
+}

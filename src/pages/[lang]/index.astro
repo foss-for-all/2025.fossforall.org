@@ -4,6 +4,7 @@ import type { ui } from "@/i18n/ui";
 import { languages } from "@/i18n/ui";
 import Layout from "@/layouts/Layout.astro";
 import Pictogram from "@/assets/pictogram.svg";
+import SponsorsBanner from "@/components/Sponsors.astro";
 export function getStaticPaths() {
   const languageKeys = Object.keys(languages);
   return languageKeys.map((lang) => {
@@ -39,4 +40,8 @@ const currentLang = Astro.currentLocale as keyof typeof ui;
       </div>
     </div>
   </section>
+  <div class="container is-fluid">
+    <h2 class="title is-size-2 mt-3 mb-5">{`${t("banner.sponsors")}`}</h2>
+    <SponsorsBanner/>
+  </div>
 </Layout>

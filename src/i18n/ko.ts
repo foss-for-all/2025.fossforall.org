@@ -22,5 +22,6 @@ export default {
     'footer.contactEmail': '이메일로 연락하기',
     'footer.sourceCode': '소스코드 확인하기',
     'footer.learnMore': 'FOSS for All 단체에 대해 알아보기',
+    'banner.sponsors': "참여 후원사"
   },
 }
