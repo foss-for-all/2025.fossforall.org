@@ -16,7 +16,7 @@ export default {
     'nav.patrons': '개인후원',
     'home.hero.date': '2025년 11월 8일',
     'home.hero.venue': '광운대학교',
-    'home.hero.cfp': '발표/전시 지원하기(접수 예정)',
+    'home.hero.cfp': '발표/부스 지원하기',
     'home.hero.sponsor': '후원사로 참여하기',
     'footer.copyright': '© 2025-Present FOSS for All. 별도 고지가 없는 경우, 콘텐츠는 CC BY 4.0 소스코드는 MIT 라이센스 아래 이용 가능.',
     'footer.contactEmail': '이메일로 연락하기',

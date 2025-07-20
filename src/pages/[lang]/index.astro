@@ -33,7 +33,7 @@ const currentLang = Astro.currentLocale as keyof typeof ui;
             <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1>
             <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1>
             <hr/>
-            <a class="button is-large is-link">{`${t("home.hero.cfp")}`}</a>
+	    <a class="button is-large" href={`https://pretalx.fossforall.org/2025`}>{`${t("home.hero.cfp")}`}</a>
             <a class="button is-large" href={`/${currentLang}/become-a-sponsor`}>{`${t("home.hero.sponsor")}`}</a>            
           </div>
         </div>
