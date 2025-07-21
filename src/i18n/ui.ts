@@ -12,3 +12,5 @@ export const ui = {
   en: localeEn.locale,
   ko: localeKo.locale
 } as const;
+
+export const showDefaultLang = false;

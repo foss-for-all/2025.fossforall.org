@@ -1,1 +1,8 @@
-<meta http-equiv="refresh" content="0;url=/ko/" />
+---
+import { getLangFromUrl } from "@/i18n/utils";
+import MainPage from "@/components/MainPage.astro";
+
+const lang = getLangFromUrl(Astro.url); // URL에서 /en 또는 기본 언어 추출
+---
+
+<MainPage lang={lang} />
