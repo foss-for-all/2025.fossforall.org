@@ -16,7 +16,7 @@ export default {
     'nav.patrons': 'Patrons',
     'home.hero.date': '8th November 2025',
     'home.hero.venue': 'Kwangwoon University',
-    'home.hero.cfp': 'Submit proposals or booths',
+    'home.hero.cfp': 'Propose session or booth',
     'home.hero.sponsor': 'Become a sponsor',
     'footer.copyright': '© 2025-Present FOSS for All. Unless otherwise noted, content licensed under CC BY 4.0 source code under MIT.',
     'footer.contactEmail': 'Contact us via email',
