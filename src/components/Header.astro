@@ -1,152 +1,165 @@
 ---
 // Header 컴포넌트 파라미터 정의
 export interface MenuItem {
-  label: string;
-  href?: string;
-  selected?: boolean;
-  items?: DropdownItem[];
+    label: string;
+    href?: string;
+    selected?: boolean;
+    items?: DropdownItem[];
 }
 export interface DropdownItem {
-  label: string;
-  href?: string;
-  divider?: boolean;
-  selected?: boolean;
+    label: string;
+    href?: string;
+    divider?: boolean;
+    selected?: boolean;
 }
 export interface ButtonItem {
-  label: string;
-  href?: string;
-  primary?: boolean;
+    label: string;
+    href?: string;
+    primary?: boolean;
 }
+
+import { getLangFromUrl, useTranslatedPath } from "@/i18n/utils";
+const l = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(l);
+
 const {
-  logoHref = `/${Astro.currentLocale || "ko"}/`,
-  logoSvg = undefined,
-  menu = [],
-  rightMenu = [],
+    logoHref = translatePath(`/`),
+    logoSvg = undefined,
+    menu = [],
+    rightMenu = [],
 } = Astro.props;
 ---
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href={logoHref}>
-      <img
-        src={logoSvg}
-        alt="Logo"
-        style="max-height: 28px; max-width: 100%;"
-      />
-    </a>
+    <div class="navbar-brand">
+        <a class="navbar-item" href={logoHref}>
+            <img
+                src={logoSvg}
+                alt="Logo"
+                style="max-height: 28px; max-width: 100%;"
+            />
+        </a>
 
-    <a
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="header-navbar"
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="header-navbar" class="navbar-menu">
-    <div class="navbar-start">
-      {
-        menu.map((item: MenuItem) =>
-          item.items ? (
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">{item.label}</a>
-              <div class="navbar-dropdown is-boxed">
-                {item.items.map((item: DropdownItem, idx: number) =>
-                  item.divider ? (
-                    <hr class="navbar-divider" />
-                  ) : (
-                    <a
-                      class={[
-                        "navbar-item",
-                        item.selected ? "is-selected" : "",
-                      ].join(" ")}
-                      href={item.href}
-                    >
-                      {item.label}
-                    </a>
-                  ),
-                )}
-              </div>
-            </div>
-          ) : (
-            <a
-              class={["navbar-item", item.selected ? "is-selected" : ""].join(
-                " ",
-              )}
-              href={item.href}
-            >
-              {item.label}
-            </a>
-          ),
-        )
-      }
+        <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="header-navbar"
+        >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
     </div>
 
-    <div class="navbar-end">
-      {
-        rightMenu.map((item: MenuItem) =>
-          item.items ? (
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">{item.label}</a>
-              <div class="navbar-dropdown is-boxed is-right">
-                {item.items.map((item: DropdownItem, idx: number) =>
-                  item.divider ? (
-                    <hr class="navbar-divider" />
-                  ) : (
-                    <a
-                      class={[
-                        "navbar-item",
-                        item.selected ? "is-selected" : "",
-                      ].join(" ")}
-                      href={item.href}
-                    >
-                      {item.label}
-                    </a>
-                  ),
-                )}
-              </div>
-            </div>
-          ) : (
-            <a
-              class={["navbar-item", item.selected ? "is-selected" : ""].join(
-                " ",
-              )}
-              href={item.href}
-            >
-              {item.label}
-            </a>
-          ),
-        )
-      }
+    <div id="header-navbar" class="navbar-menu">
+        <div class="navbar-start">
+            {
+                menu.map((item: MenuItem) =>
+                    item.items ? (
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">{item.label}</a>
+                            <div class="navbar-dropdown is-boxed">
+                                {item.items.map(
+                                    (item: DropdownItem, idx: number) =>
+                                        item.divider ? (
+                                            <hr class="navbar-divider" />
+                                        ) : (
+                                            <a
+                                                class={[
+                                                    "navbar-item",
+                                                    item.selected
+                                                        ? "is-selected"
+                                                        : "",
+                                                ].join(" ")}
+                                                href={item.href}
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ),
+                                )}
+                            </div>
+                        </div>
+                    ) : (
+                        <a
+                            class={[
+                                "navbar-item",
+                                item.selected ? "is-selected" : "",
+                            ].join(" ")}
+                            href={item.href}
+                        >
+                            {item.label}
+                        </a>
+                    ),
+                )
+            }
+        </div>
+
+        <div class="navbar-end">
+            {
+                rightMenu.map((item: MenuItem) =>
+                    item.items ? (
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">{item.label}</a>
+                            <div class="navbar-dropdown is-boxed is-right">
+                                {item.items.map(
+                                    (item: DropdownItem, idx: number) =>
+                                        item.divider ? (
+                                            <hr class="navbar-divider" />
+                                        ) : (
+                                            <a
+                                                class={[
+                                                    "navbar-item",
+                                                    item.selected
+                                                        ? "is-selected"
+                                                        : "",
+                                                ].join(" ")}
+                                                href={item.href}
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ),
+                                )}
+                            </div>
+                        </div>
+                    ) : (
+                        <a
+                            class={[
+                                "navbar-item",
+                                item.selected ? "is-selected" : "",
+                            ].join(" ")}
+                            href={item.href}
+                        >
+                            {item.label}
+                        </a>
+                    ),
+                )
+            }
+        </div>
     </div>
-  </div>
 </nav>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(
-      document.querySelectorAll(".navbar-burger"),
-      0,
-    );
+    document.addEventListener("DOMContentLoaded", () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(
+            document.querySelectorAll(".navbar-burger"),
+            0,
+        );
 
-    // Add a click event on each of them
-    $navbarBurgers.forEach((el) => {
-      el.addEventListener("click", () => {
-        // Get the target from the "data-target" attribute
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
+        // Add a click event on each of them
+        $navbarBurgers.forEach((el) => {
+            el.addEventListener("click", () => {
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
 
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle("is-active");
-        $target.classList.toggle("is-active");
-      });
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle("is-active");
+                $target.classList.toggle("is-active");
+            });
+        });
     });
-  });
 </script>

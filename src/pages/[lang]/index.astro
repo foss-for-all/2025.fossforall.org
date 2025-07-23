@@ -1,47 +1,14 @@
 ---
-import { useTranslations } from "@/i18n/utils";
-import type { ui } from "@/i18n/ui";
 import { languages } from "@/i18n/ui";
-import Layout from "@/layouts/Layout.astro";
-import Pictogram from "@/assets/pictogram.svg";
-import SponsorsBanner from "@/components/Sponsors.astro";
+import MainPage from "@/components/MainPage.astro";
+
 export function getStaticPaths() {
-  const languageKeys = Object.keys(languages);
-  return languageKeys.map((lang) => {
-    return { params: { lang } };
-  });
+    return Object.keys(languages).map((lang) => ({
+        params: { lang },
+    }));
 }
-const t = useTranslations(Astro.currentLocale as keyof typeof ui);
-const currentLang = Astro.currentLocale as keyof typeof ui;
+
+const lang = Astro.params.lang;
 ---
 
-<Layout>
-  <section class="hero is-medium">
-    <div class="fixed-grid has-1-cols-mobile has-1-cols-tablet has-2-cols-desktop has-2-cols">
-      <div class="grid">
-        <div class="cell">
-          <img
-            src={Pictogram.src}
-            alt="FOSS for All Pictogram"
-            style="margin-top: 50px; max-width: 80vw; max-height: 800px"
-          />
-        </div>
-        <div class="cell">
-          <div class="hero-body">
-            <h1 class="title is-size-1 mb-0">FOSS for All Conference</h1>
-            <h1 class="is-size-1">Coexist with Open Source</h1>
-            <h1 class="is-size-1">{`${t("home.hero.date")}`}</h1>
-            <h1 class="is-size-1">{`${t("home.hero.venue")}`}</h1>
-            <hr/>
-	    <a class="button is-large" href={`https://pretalx.fossforall.org/2025`}>{`${t("home.hero.cfp")}`}</a>
-            <a class="button is-large" href={`/${currentLang}/become-a-sponsor`}>{`${t("home.hero.sponsor")}`}</a>            
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="container is-fluid">
-    <h2 class="title is-size-2 mt-3 mb-5">{`${t("banner.sponsors")}`}</h2>
-    <SponsorsBanner/>
-  </div>
-</Layout>
+<MainPage lang={lang} />

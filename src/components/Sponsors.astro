@@ -1,10 +1,15 @@
 ---
 import { SponsorLogoWithModal } from "@/components/SponsorLogoWithModal";
 import { SponsorsList } from "@/data/sponsors";
+import { getLangFromUrl } from "@/i18n/utils";
+import type { ui } from "@/i18n/ui";
+
+const lang = getLangFromUrl(Astro.url);
+const sponsors = SponsorsList(lang as keyof typeof ui);
 ---
 
 {
-    SponsorsList.map((group) => (
+    sponsors.map((group) => (
         <div>
             <h2 class="title is-size-3 mt-5 mb-3">{group.sponsorClassName}</h2>
             <div class={`fixed-grid ${group.gridClasses}`}>
@@ -20,7 +25,7 @@ import { SponsorsList } from "@/data/sponsors";
                                             imageHeight: group.imageHeight,
                                         }}
                                     />
-                                </div>  
+                                </div>
                             </div>
                         </div>
                     ))}
