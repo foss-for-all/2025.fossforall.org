@@ -4,6 +4,8 @@ import { useTranslations, useTranslatedPath } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
 import Pictogram from "@/assets/pictogram.svg";
 import SponsorsBanner from "@/components/Sponsors.astro";
+import BlogFeed from "@/components/BlogFeed.astro";
+import { WebsiteConfig } from "@/config";
 
 export interface Props {
     lang: keyof typeof ui;
@@ -12,11 +14,13 @@ export interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+const config = WebsiteConfig(lang);
+
 ---
 
 <Layout>
     <section class="hero is-medium">
-        <div class="fixed-grid has-2-cols">
+        <div class="fixed-grid has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile">
             <div class="grid">
                 <div class="cell">
                     <img
@@ -51,8 +55,11 @@ const translatePath = useTranslatedPath(lang);
             </div>
         </div>
     </section>
-
-    <div class="container is-fluid">
+    <div class="container">
+        <h2 class="title is-size-2 mt-3 mb-5">{t("banner.blog")}</h2>
+        <BlogFeed feedUrl={config.blogFeedUrl} />
+    </div>
+    <div class="container mt-5 mb-5">
         <h2 class="title is-size-2 mt-3 mb-5">{t("banner.sponsors")}</h2>
         <SponsorsBanner />
     </div>

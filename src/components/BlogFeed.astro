@@ -1,0 +1,40 @@
+---
+import RssParser from "rss-parser";
+
+const {feedUrl} = Astro.props;
+const parser = new RssParser();
+const feed = await parser.parseURL(feedUrl as string);
+const posts = feed.items.slice(0, 3);
+
+function sliceStringByBytes(str: string | undefined, startByte: number, endByte: number) {
+  const encoder = new TextEncoder();
+  const encoded = encoder.encode(str); // Encodes the string to UTF-8 bytes (Uint8Array)
+
+  const slicedBytes = encoded.slice(startByte, endByte);
+
+  const decoder = new TextDecoder();
+  return decoder.decode(slicedBytes); // Decodes the sliced bytes back to a string
+}
+---
+
+
+  <div class="columns is-multiline">
+    {posts.map((post) => (
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-content">
+            <p class="title">
+              <a href={post.link}>{post.title}</a>
+            </p>
+            <p class="subtitle">
+              {post.pubDate && new Date(post.pubDate).toLocaleDateString()}
+            </p>
+            <div class="content">
+              {sliceStringByBytes(post.contentSnippet, 0, 200)}
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>

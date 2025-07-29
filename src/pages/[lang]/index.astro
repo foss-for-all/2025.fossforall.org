@@ -11,4 +11,4 @@ export function getStaticPaths() {
 const lang = Astro.params.lang;
 ---
 
-<MainPage lang={lang} />
+<MainPage lang={lang as keyof typeof languages} />
