@@ -13,7 +13,7 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
       description: "2025년 11월 8일 광운대학교",
       faviconSrc: F4ALogo.src,
     },
-    blogFeedUrl: "https://fossforall.org/tags/f4a25/index.xml",
+    blogFeedUrl: "https://fossforall.org/tags/f4ac25/index.xml",
     navigation: {
       logoSrc: F4ALogo.src,
 
