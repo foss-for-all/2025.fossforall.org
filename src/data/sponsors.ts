@@ -1,4 +1,5 @@
 import LogoPlaceHolder from "@/assets/sponsors/placeholder.svg";
+import CouchbaseLogo from "@/assets/sponsors/couchbase.svg";
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
 
@@ -12,10 +13,10 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       imageHeight: "15rem",
       items: [
         {
-          name: "Gold sponsor",
-          descriptionMarkdown: `Become a Gold sponsor today!`,
-          logoSrc: LogoPlaceHolder.src,
-          link: translatePath(`/become-a-sponsor/`),
+          name: "Couchbase",
+          descriptionMarkdown: `카우치베이스는 미국에 본사를 두고 있는 NoSQL 데이터 플랫폼으로, 국내에는 약 3년전에 진출 하였습니다. 국내외에서 다양한 레퍼런스를 가지고 있지만, 아직 국내 커뮤니티 혹은 현업들에서 인지도가 높은 플랫폼은 아닙니다. 무료로 사용할 수 있는 커뮤니티 버전을 기반으로 다양한 커뮤니티 그룹, 멤버, 현업 분들과 의사사통 하고자 합니다. `,
+          logoSrc: CouchbaseLogo.src,
+          link: "https://www.couchbase.com/",
         },
       ],
     },
