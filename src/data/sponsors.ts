@@ -11,7 +11,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     {
       sponsorClassName: "GOLD",
       gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
-      imageHeight: "15rem",
+      imageHeight: "8rem",
       items: [
         {
           name: "Couchbase",
@@ -24,7 +24,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     {
       sponsorClassName: "SILVER",
       gridClasses: "has-4-cols-desktop has-3-cols-tablet has-2-cols-mobile",
-      imageHeight: "13rem",
+      imageHeight: "7rem",
       items: [
         {
           name: "Silver sponsor",
@@ -37,7 +37,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     {
       sponsorClassName: "BRONZE",
       gridClasses: "has-5-cols-desktop has-4-cols-tablet has-3-cols-mobile",
-      imageHeight: "9rem",
+      imageHeight: "14rem",
       items: [
         {
           name: "Rainlab",

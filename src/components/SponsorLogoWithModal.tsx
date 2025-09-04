@@ -23,16 +23,20 @@ export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps)
 
     return (
         <div>
-            <img
-                src={item.logoSrc}
-                style={{
-                    height: group.imageHeight,
-                    display: 'block',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                }}
-                onClick={openModal}
-            />
+<img 
+  src={item.logoSrc} 
+  alt={item.name} 
+  style={{
+    height: 'auto',
+    maxHeight: group.imageHeight, // 최소 크기 이상 유지
+    width: 'auto', 
+    minHeight: group.imageHeight, // 공식 최소 크기 이하 축소 방지
+    margin: '0 auto',
+    display: 'block', // 외부 여백 최소화 위해 inline-block 방지
+    cursor: 'pointer'
+  }} 
+  onClick={openModal}
+/>
             <div className={`modal ${isActive ? 'is-active' : ''}`}>
                 <div className="modal-background" onClick={closeModal}></div>
                 <div className="modal-card">
