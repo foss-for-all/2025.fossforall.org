@@ -3,34 +3,35 @@ import { SponsorLogoWithModal } from "@/components/SponsorLogoWithModal";
 import { SponsorsList } from "@/data/sponsors";
 import { getLangFromUrl } from "@/i18n/utils";
 import type { ui } from "@/i18n/ui";
-
 const lang = getLangFromUrl(Astro.url);
 const sponsors = SponsorsList(lang as keyof typeof ui);
 ---
 
-{
-    sponsors.map((group) => (
-        <div>
-            <h2 class="title is-size-3 mt-5 mb-3">{group.sponsorClassName}</h2>
-            <div class={`fixed-grid ${group.gridClasses}`}>
-                <div class="grid">
-                    {group.items.map((item) => (
-                        <div class="cell">
-                            <div class="card">
-                                <div class="card-content">
-                                    <SponsorLogoWithModal
-                                        client:load
-                                        item={item}
-                                        group={{
-                                            imageHeight: group.imageHeight,
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+{ sponsors.map((group) => (
+  <section>
+    <h2 class="title is-size-3 mt-5 mb-3">{group.sponsorClassName}</h2>
+    <div class={`fixed-grid ${group.gridClasses}`} style="gap: 1rem;">
+      {group.items.map((item) => (
+        <div class="cell" style="
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 0; 
+            margin: 0; 
+            border: none;">
+          {/* card 및 card-content 제거 */}
+          <SponsorLogoWithModal
+            client:load
+            item={item}
+            group={{ imageHeight: group.imageHeight }}
+            style={{
+              minHeight: group.imageHeight, // 최소 높이 유지
+              maxHeight: group.imageHeight,
+              width: "auto"
+            }}
+          />
         </div>
-    ))
-}
+      ))}
+    </div>
+  </section>
+)) }
