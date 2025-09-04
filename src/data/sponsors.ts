@@ -1,6 +1,5 @@
 import LogoPlaceHolder from "@/assets/sponsors/placeholder.svg";
 import CouchbaseLogo from "@/assets/sponsors/couchbase.svg";
-import RainlabLogo from "@/assets/sponsors/rainlab.svg";
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
 
@@ -40,11 +39,10 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       imageHeight: "9rem",
       items: [
         {
-          name: "Rainlab",
-          descriptionMarkdown: `<b>저희는 도쿄를 거점으로 하고 있는 엔지니어링 회사입니다.</b>
-		  소프트웨어 엔지니어링, 시스템 아키텍쳐 디자인, 애플리케이션 기획 및 개발 등을 하고 있습니다. GNU/Linux와 같은 Unix계열의 운영체제로 서버를 관리/운영 하고 있습니다.`,
-          logoSrc: RainlabLogo.src,
-          link: "https://rainlab.co.jp/",
+          name: "Bronze sponsor",
+          descriptionMarkdown: `Become a Bronze sponsor today!`,
+          logoSrc: LogoPlaceHolder.src,
+          link: translatePath(`/become-a-sponsor/`),
         },
       ],
     },
