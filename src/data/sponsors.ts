@@ -1,6 +1,7 @@
 import LogoPlaceHolder from "@/assets/sponsors/placeholder.svg";
 import CouchbaseLogo from "@/assets/sponsors/couchbase.svg";
 import RainlabLogo from "@/assets/sponsors/rainlab.svg";
+import OnlyofficeLogo from "@/assets/sponsors/onlyoffice.svg";
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
 
@@ -27,10 +28,12 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       imageHeight: "7rem",
       items: [
         {
-          name: "Silver sponsor",
-          descriptionMarkdown: `Become a Silver sponsor today!`,
-          logoSrc: LogoPlaceHolder.src,
-          link: translatePath(`/become-a-sponsor/`),
+          name: "ONLYOFFICE",
+          descriptionMarkdown: `ONLYOFFICE, an open-source office software project, focuses on advanced and secure office solutions. With over 10 million users worldwide, it is recognized for its innovation in the online office domain. The ONLYOFFICE ecosystem includes collaborative applications such as online editors for text documents, spreadsheets, presentations, forms, and PDFs, along with a room-based collaborative platform.
+
+          As an international company, ONLYOFFICE has employees and contributors across the globe, with offices located in Singapore, Dallas, Riga, London, Shanghai, Belgrade, Yerevan, and Tashkent.`,
+          logoSrc: OnlyofficeLogo.src,
+          link: "https://www.onlyoffice.com",
         },
       ],
     },
