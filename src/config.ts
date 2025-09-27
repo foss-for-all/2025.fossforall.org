@@ -17,7 +17,7 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
     pretalx: {
       baseUrl: "https://pretalx.fossforall.org",
       eventSlug: "2025",
-      speakersToExpose: ["XGEJRN"],
+      speakersToExpose: ["XGEJRN", "LAY7R9"],
     },
     navigation: {
       logoSrc: F4ALogo.src,
