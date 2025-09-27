@@ -5,6 +5,7 @@ import Layout from "@/layouts/Layout.astro";
 import Pictogram from "@/assets/pictogram.svg";
 import SponsorsBanner from "@/components/Sponsors.astro";
 import BlogFeed from "@/components/BlogFeed.astro";
+import Speakers from "@/components/Speakers.astro";
 import { WebsiteConfig } from "@/config";
 
 export interface Props {
@@ -15,12 +16,13 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 const config = WebsiteConfig(lang);
-
 ---
 
 <Layout>
     <section class="hero is-medium">
-        <div class="fixed-grid has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile">
+        <div
+            class="fixed-grid has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile"
+        >
             <div class="grid">
                 <div class="cell">
                     <img
@@ -44,10 +46,7 @@ const config = WebsiteConfig(lang);
                         >
                             {t("home.hero.register")}
                         </a>
-                        <a
-                            class="button is-large m-1"
-                            href="./cfp"
-                        >
+                        <a class="button is-large m-1" href="./cfp">
                             {t("home.hero.cfp")}
                         </a>
                         <a
@@ -55,23 +54,28 @@ const config = WebsiteConfig(lang);
                             href={translatePath("/become-a-sponsor")}
                         >
                             {t("home.hero.sponsor")}
-                        <a
-                            class="button is-large m-1"
-                            href="https://discord.gg/YbXE6ZMpbX"
-                        >
-                            {t("home.hero.discord")}
+                            <a
+                                class="button is-large m-1"
+                                href="https://discord.gg/YbXE6ZMpbX"
+                            >
+                                {t("home.hero.discord")}
+                            </a>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container p-3">
+            <h2 class="title is-size-2 mt-3 mb-5">{t("banner.speakers")}</h2>
+            <Speakers />
+        </div>
+        <div class="container p-3">
+            <h2 class="title is-size-2 mt-3 mb-5">{t("banner.blog")}</h2>
+            <BlogFeed feedUrl={config.blogFeedUrl} />
+        </div>
+        <div class="container mt-5 mb-5 p-3">
+            <h2 class="title is-size-2 mt-3 mb-5">{t("banner.sponsors")}</h2>
+            <SponsorsBanner />
+        </div>
     </section>
-    <div class="container p-3">
-        <h2 class="title is-size-2 mt-3 mb-5">{t("banner.blog")}</h2>
-        <BlogFeed feedUrl={config.blogFeedUrl} />
-    </div>
-    <div class="container mt-5 mb-5 p-3">
-        <h2 class="title is-size-2 mt-3 mb-5">{t("banner.sponsors")}</h2>
-        <SponsorsBanner />
-    </div>
 </Layout>

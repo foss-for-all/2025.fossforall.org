@@ -1,0 +1,52 @@
+---
+const { lang } = Astro.props;
+import { sliceStringByBytes } from "@/lib/utils";
+import { WebsiteConfig } from "@/config";
+const config = WebsiteConfig(lang);
+
+interface Speaker {
+    code: string;
+    name: string;
+    biography: string;
+    submissions: string[];
+    avatar_url: string;
+    answers: string[];
+    email: string;
+    timezone: string;
+    locale: string;
+    has_arrived: boolean;
+}
+
+const response = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`,
+    {
+        headers: new Headers({
+            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+        }),
+    },
+);
+const speakers: Speaker[] = (await response.json())["results"];
+const speakersToExpose = config.pretalx.speakersToExpose;
+---
+
+<div class="columns is-multiline">
+    {
+        speakers.map((speaker: Speaker) => speakersToExpose.includes(speaker.code)?(
+            <div class="column is-one-quarter">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-1by1">
+                            <img src={speaker.avatar_url} alt={speaker.name} />
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p class="title is-4">{speaker.name}</p>
+                        <div class="content">
+                            {sliceStringByBytes(speaker.biography, 0, 100)}...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ):(<></>))
+    }
+</div>

@@ -14,6 +14,11 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
       faviconSrc: F4ALogo.src,
     },
     blogFeedUrl: "https://fossforall.org/tags/f4ac25/index.xml",
+    pretalx: {
+      baseUrl: "https://pretalx.fossforall.org",
+      eventSlug: "2025",
+      speakersToExpose: ["XGEJRN"],
+    },
     navigation: {
       logoSrc: F4ALogo.src,
 
