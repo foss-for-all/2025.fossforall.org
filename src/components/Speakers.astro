@@ -2,6 +2,8 @@
 const { lang } = Astro.props;
 import { sliceStringByBytes } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
+import { createHash } from 'crypto';
+
 const config = WebsiteConfig(lang);
 
 interface Speaker {
@@ -36,7 +38,7 @@ const speakersToExpose = config.pretalx.speakersToExpose;
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-1by1">
-                            <img src={speaker.avatar_url} alt={speaker.name} />
+                            <img src={speaker.avatar_url == "" ? `https://gravatar.com/avatar/${createHash('SHA256').update(speaker.email, 'utf-8').digest("hex")}?s=200` : speaker.avatar_url} alt={speaker.name} />
                         </figure>
                     </div>
                     <div class="card-content">
