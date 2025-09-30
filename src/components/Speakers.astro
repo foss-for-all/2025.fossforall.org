@@ -39,8 +39,9 @@ const {
             <div class="column is-one-quarter">
                 <div class="card">
                     <div class="card-image">
-                        <figure class="image is-1by1">
-                            <img src={speaker.avatar_url == "" ? `https://gravatar.com/avatar/${createHash('SHA256').update(speaker.email, 'utf-8').digest("hex")}?s=200` : speaker.avatar_url} alt={speaker.name} />
+                        <figure class="image is-square">
+                            <img style="object-fit: cover;"
+                                src={speaker.avatar_url == "" ? `https://gravatar.com/avatar/${createHash('SHA256').update(speaker.email, 'utf-8').digest("hex")}?s=200` : speaker.avatar_url} alt={speaker.name} />
                         </figure>
                     </div>
                     <div class="card-content">
