@@ -1,0 +1,9 @@
+---
+layout: src/layouts/Page.astro
+title: 연사
+description: 이번 컨퍼런스 연사 분들을 만나보세요!
+---
+import { WebsiteConfig } from "@/config";
+import Speakers from "@/components/Speakers.astro";
+
+<Speakers speakersToExpose={WebsiteConfig("ko").pretalx.speakersToExpose}/>

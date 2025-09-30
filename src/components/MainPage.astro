@@ -16,6 +16,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 const config = WebsiteConfig(lang);
+const speakersToExpose = config.pretalx.keynoteSpeakers;
 ---
 
 <Layout>
@@ -67,7 +68,15 @@ const config = WebsiteConfig(lang);
         </div>
         <div class="container p-3">
             <h2 class="title is-size-2 mt-3 mb-5">{t("banner.speakers")}</h2>
-            <Speakers />
+            <Speakers speakersToExpose={speakersToExpose} />
+            <a class="button m-1 is-large" href="./speakers">
+                <span>
+                    {t("banner.speakers.more")}
+                </span>
+                <span class="icon">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
         </div>
         <div class="container p-3">
             <h2 class="title is-size-2 mt-3 mb-5">{t("banner.blog")}</h2>

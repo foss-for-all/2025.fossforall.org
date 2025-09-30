@@ -27,6 +27,7 @@ export default {
     "footer.learnMore": "Learn more about FOSS for All",
     "banner.sponsors": "Our Sponsors",
     "banner.blog": "Recent Updates",
-    "banner.speakers": "Speakers",
+    "banner.speakers": "Keynote Speakers",
+    "banner.speakers.more": "More Speakers",
   },
 };

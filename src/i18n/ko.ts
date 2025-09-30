@@ -27,6 +27,7 @@ export default {
     "footer.learnMore": "FOSS for All 단체에 대해 알아보기",
     "banner.sponsors": "참여 후원사",
     "banner.blog": "최근 소식",
-    "banner.speakers": "발표자",
+    "banner.speakers": "기조연사",
+    "banner.speakers.more": "더 많은 연사 확인",
   },
 };
