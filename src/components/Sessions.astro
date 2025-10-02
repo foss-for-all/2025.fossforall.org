@@ -1,8 +1,6 @@
 ---
 const { lang } = Astro.props;
-import { sliceStringByBytes } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
-import { createHash } from 'crypto';
 
 const config = WebsiteConfig(lang);
 
@@ -38,6 +36,16 @@ interface Speaker {
     locale: string;
     has_arrived: boolean;
 }
+
+interface Track {
+    id: number;
+    name: Map<string, string>;
+    description: Map<string, string>;
+    color: string;
+    position: number;
+    requires_access_code:boolean;
+}
+
 const sessionResponse = await fetch(
     `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`,
     {
@@ -58,6 +66,16 @@ const speakerResponse = await fetch(
 );
 const speakers: Speaker[] = (await speakerResponse.json())["results"];
 
+const trackResponse = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/tracks/`,
+    {
+        headers: new Headers({
+            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+        }),
+    },
+);
+const tracks: Track[] = (await trackResponse.json())["results"];
+console.log(tracks)
 ---
 
 <div class="columns is-multiline">
@@ -68,16 +86,34 @@ const speakers: Speaker[] = (await speakerResponse.json())["results"];
                     <div class="card-content">
                         <p class="title is-4">{session.title}</p>
                         <div class="content">
+                            {session.speakers.map((item) => (
+                                <>
+                                    <span class="icon">
+                                        <i class="fa-solid fa-person" />
+                                    </span>
+                                    <span>
+                                        {
+                                            speakers.find(
+                                                (speaker) =>
+                                                    speaker.code == item,
+                                            )?.name
+                                        }
+                                    </span>
+                                </>
+                            ))}
                             <span class="icon">
-                                <i class="fas fa-home"></i>
+                                <i class="fa-solid fa-tags" />
                             </span>
-                            <span>{session.speakers}</span>
+                             <span>
+                                        {
+                                            tracks.find(
+                                                (track) =>
+                                                    track.id == session.track,
+                                            )?.name[lang]
+                                        }
+                                    </span>
                             <span class="icon">
-                                <i class="fas fa-home"></i>
-                            </span>
-                            <span>{session.track}</span>
-                            <span class="icon">
-                                <i class="fas fa-home"></i>
+                                <i class="fa-solid fa-language" />
                             </span>
                             <span>{session.content_locale}</span>
                         </div>
