@@ -7,7 +7,7 @@ export default {
     "nav.venueSafety": "행사장 & 안전정보",
     "nav.programs": "프로그램",
     "nav.cfp": "발표/전시 지원 (마감)",
-    "nav.schedules": "일정표",
+    "nav.schedules": "일정표 (공개예정)",
     "nav.exhibitions": "전시",
     "nav.socialEvents": "부대행사",
     "nav.sponsorsPatrons": "후원사/개인후원",
