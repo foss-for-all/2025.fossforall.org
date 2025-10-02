@@ -1,0 +1,67 @@
+---
+const { lang } = Astro.props;
+import { sliceStringByBytes } from "@/lib/utils";
+import { WebsiteConfig } from "@/config";
+import { createHash } from 'crypto';
+
+const config = WebsiteConfig(lang);
+
+interface Submission {
+    code: string;
+    title: string;
+    speakers: string[];
+    submission_type: 0;
+    track: 0;
+    tags: number[];
+    state: string;
+    abstract: string;
+    description: string;
+    duration: number;
+    slot_count: number;
+    content_locale: string;
+    do_not_record: boolean;
+    image: string;
+    resources: number[];
+    slots: number[];
+    answers: number[];
+}
+
+const response = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions?state=confirmed`,
+    {
+        headers: new Headers({
+            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+        }),
+    },
+);
+const sessions: Submission[] = (await response.json())["results"];
+
+---
+
+<div class="columns is-multiline">
+    {
+        sessions.map((session: Submission) => (
+            <div class="column is-full">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title is-4">{session.title}</p>
+                        <div class="content">
+                            <span class="icon">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span>{session.speakers}</span>
+                            <span class="icon">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span>{session.track}</span>
+                            <span class="icon">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span>{session.content_locale}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ))
+    }
+</div>
