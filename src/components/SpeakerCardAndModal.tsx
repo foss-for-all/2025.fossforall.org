@@ -67,7 +67,7 @@ export function SpeakerCardAndModal({
                 alt={speaker.name}
               />
             </figure>
-            <h2>{speaker.name}</h2>
+            <p className="title is-4 mt-4">{speaker.name}</p>
             <div dangerouslySetInnerHTML={{ __html: speaker.biography }}></div>
           </section>
         </div>
