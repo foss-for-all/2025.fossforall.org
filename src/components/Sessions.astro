@@ -26,15 +26,37 @@ interface Submission {
     answers: number[];
 }
 
-const response = await fetch(
-    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions?state=confirmed`,
+interface Speaker {
+    code: string;
+    name: string;
+    biography: string;
+    submissions: string[];
+    avatar_url: string;
+    answers: string[];
+    email: string;
+    timezone: string;
+    locale: string;
+    has_arrived: boolean;
+}
+const sessionResponse = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`,
     {
         headers: new Headers({
             Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
         }),
     },
 );
-const sessions: Submission[] = (await response.json())["results"];
+const sessions: Submission[] = (await sessionResponse.json())["results"];
+
+const speakerResponse = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`,
+    {
+        headers: new Headers({
+            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+        }),
+    },
+);
+const speakers: Speaker[] = (await speakerResponse.json())["results"];
 
 ---
 
