@@ -9,12 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.0",
-    "@astrojs/react": "^4.3.0",
+    "@astrojs/mdx": "^4.3.6",
+    "@astrojs/react": "^4.4.0",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "astro": "^5.13.5",
+    "astro": "^5.14.1",
     "bulma": "^1.0.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
