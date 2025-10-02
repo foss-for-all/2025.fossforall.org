@@ -15,6 +15,7 @@ export default {
     "nav.sponsors": "Our Sponsors",
     "nav.patrons": "Patrons",
     "nav.speakers": "Speakers",
+    "nav.sessions": "Sessions",
     "home.hero.date": "8th November 2025",
     "home.hero.venue": "Kwangwoon University",
     "home.hero.cfp": "Propose session or booth",

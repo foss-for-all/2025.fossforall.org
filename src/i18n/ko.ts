@@ -15,6 +15,7 @@ export default {
     "nav.sponsors": "참여 후원사",
     "nav.patrons": "개인후원",
     "nav.speakers": "연사",
+    "nav.sessions": "세션",
     "home.hero.date": "2025년 11월 8일",
     "home.hero.venue": "광운대학교",
     "home.hero.cfp": "발표/부스 지원하기",
