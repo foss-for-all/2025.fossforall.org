@@ -3,6 +3,8 @@ import CouchbaseLogo from "@/assets/sponsors/couchbase.svg";
 import RainlabLogo from "@/assets/sponsors/rainlab.svg";
 import OnlyofficeLogo from "@/assets/sponsors/onlyoffice.svg";
 import ExpressVPNLogo from "@/assets/sponsors/expressvpn.svg";
+import DeepComputingLogo from "@/assets/sponsors/DeepComputing.svg";
+
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
 
@@ -50,7 +52,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           logoSrc: RainlabLogo.src,
           link: "https://rainlab.co.jp/",
         },
-         {
+        {
           name: "ExpressVPN",
           descriptionMarkdown: `2009년에 설립된 ExpressVPN은 수백만 명의 사용자에게 자신의 인터넷 경험을 제어할 수 있는 권한을 부여하고 있습니다. 수상 경력에 빛나는 ExpressVPN의 소비자 VPN 서비스는 오픈 소스 VPN 프로토콜인 Lightway를 기반으로 하며 단 몇 번의 클릭만으로 사용자의 개인 정보를 보호합니다. ExpressVPN의 Keys 비밀번호 관리자와 Aircove 공유기는 누구나 쉽게 디지털 개인 정보 보호 및 보안을 이용할 수 있도록 합니다. ExpressVPN의 제품은 PwC, Cure53, KPMG 등을 비롯한 제3자 전문가에 의해 폭넓게 검증되었습니다.
 
@@ -59,6 +61,12 @@ export const SponsorsList = (lang: keyof typeof ui) => {
 2021년 9월, ExpressVPN은 선도적인 개인 정보 보호 및 보안 브랜드인 Kape Technologies 패밀리에 합류했습니다.`,
           logoSrc: ExpressVPNLogo.src,
           link: "https://www.expressvpn.com/",
+        },
+        {
+          name: "DeepComputing",
+          descriptionMarkdown: `Formed in 2022 by a group of dedicated RISC-V pioneers, DeepComputing is headquartered in Hong Kong. We share an enduring passion for advancing the adoption and implementation of RISC-V beyond existing ISA chipsets. Our aim is to create bold new products. With faith in our diverse and dedicated partners, we believe in the promising new future of RISC-V. Together, we will focus on driving the development of the RISC-V ecosystem with products such as laptops, pads, workstations, headphones, smart watches, smart speakers, AR glasses and autonomous driving for toys and real world vehicles.`,
+          logoSrc: DeepComputingLogo.src,
+          link: "https://deepcomputing.io/",
         },
       ],
     },
