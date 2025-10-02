@@ -61,8 +61,6 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
           items: [
             { label: t("nav.schedules"), href: translatePath(`/schedules/`) },
             { label: t("nav.speakers"), href: translatePath(`/speakers/`) },
-            { divider: true },
-            { label: t("nav.cfp"), href: translatePath(`/cfp/`)}
             {
               label: t("nav.exhibitions"),
               href: translatePath(`/exhibitions/`),
@@ -71,6 +69,8 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
               label: t("nav.socialEvents"),
               href: translatePath(`/social-events/`),
             },
+            { divider: true },
+            { label: t("nav.cfp"), href: translatePath(`/cfp/`)}
           ],
         },
         {
