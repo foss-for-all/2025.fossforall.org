@@ -59,10 +59,10 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
           label: t("nav.programs"),
           href: "#",
           items: [
-            { label: t("nav.cfp"), href: translatePath(`/cfp/`) },
-            { divider: true },
             { label: t("nav.schedules"), href: translatePath(`/schedules/`) },
             { label: t("nav.speakers"), href: translatePath(`/speakers/`) },
+            { divider: true },
+            { label: t("nav.cfp"), href: translatePath(`/cfp/`)}
             {
               label: t("nav.exhibitions"),
               href: translatePath(`/exhibitions/`),

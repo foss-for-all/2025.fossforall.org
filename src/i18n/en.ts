@@ -6,7 +6,7 @@ export default {
     "nav.coc": "Code of Conduct",
     "nav.venueSafety": "Venue & Safety Information",
     "nav.programs": "Programs",
-    "nav.cfp": "Call for Proposals",
+    "nav.cfp": "Call for Proposals (Closed)",
     "nav.schedules": "Schedules",
     "nav.exhibitions": "Exhibitions",
     "nav.socialEvents": "Social Events",
