@@ -71,7 +71,7 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
               href: translatePath(`/social-events/`),
             },
             { divider: true },
-            { label: t("nav.cfp"), href: translatePath(`/cfp/`)}
+            { label: t("nav.cfp"), href: translatePath(`/cfp/`) },
           ],
         },
         {
@@ -109,6 +109,10 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
           {
             label: "fossforall.org",
             href: "https://fossforall.org",
+          },
+          {
+            label: "🎟️",
+            href: "https://event-us.kr/fossforall/event/110400",
           },
           {
             label: "🌐",
