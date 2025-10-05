@@ -4,7 +4,7 @@ import RainlabLogo from "@/assets/sponsors/rainlab.svg";
 import OnlyofficeLogo from "@/assets/sponsors/onlyoffice.svg";
 import ExpressVPNLogo from "@/assets/sponsors/expressvpn.svg";
 import DeepComputingLogo from "@/assets/sponsors/DeepComputing.svg";
-import NipaLogo from "@/assets/sponsors/nipa.png";
+import NipaLogo from "@/assets/sponsors/nipa.svg";
 
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
