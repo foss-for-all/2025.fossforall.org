@@ -27,7 +27,6 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
         "7GADBL",
         "VVRG9Y",
         "L9HMWJ",
-        "XGJ7KB",
         "PKGFPR",
         "CXHEB7",
         "EAC3VH",
