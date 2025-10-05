@@ -74,7 +74,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     {
       sponsorClassName: "Governmant",
       gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
-      imageHeight: "10rem",
+      imageHeight: "15rem",
       items: [
         {
           name: "OpenUP (NIPA)",
