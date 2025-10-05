@@ -4,6 +4,7 @@ import RainlabLogo from "@/assets/sponsors/rainlab.svg";
 import OnlyofficeLogo from "@/assets/sponsors/onlyoffice.svg";
 import ExpressVPNLogo from "@/assets/sponsors/expressvpn.svg";
 import DeepComputingLogo from "@/assets/sponsors/DeepComputing.svg";
+import NipaLogo from "@/assets/sponsors/nipa.png";
 
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
@@ -67,6 +68,19 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           descriptionMarkdown: `Formed in 2022 by a group of dedicated RISC-V pioneers, DeepComputing is headquartered in Hong Kong. We share an enduring passion for advancing the adoption and implementation of RISC-V beyond existing ISA chipsets. Our aim is to create bold new products. With faith in our diverse and dedicated partners, we believe in the promising new future of RISC-V. Together, we will focus on driving the development of the RISC-V ecosystem with products such as laptops, pads, workstations, headphones, smart watches, smart speakers, AR glasses and autonomous driving for toys and real world vehicles.`,
           logoSrc: DeepComputingLogo.src,
           link: "https://deepcomputing.io/",
+        },
+      ],
+    },
+    {
+      sponsorClassName: "Governmant",
+      gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      imageHeight: "10rem",
+      items: [
+        {
+          name: "OpenUP (NIPA)",
+          descriptionMarkdown: `정보통신산업진흥원(NIPA)의 산하 조직인 OpenUP(오픈소스 소프트웨어 통합지원센터)은, 오픈소스SW를 개발, 공유, 활용하기를 원하는 개발자, 기업, 정부를 지원하고, 수요(기업, 공공기관)와 공급(개발자, 기업)의 선순환 구조를 이루어 오픈소스SW의 활성화 허브 역할을 수행하고 있습니다.`,
+          logoSrc: NipaLogo.src,
+          link: "https://oss.kr/",
         },
       ],
     },
