@@ -11,6 +11,10 @@ body{
   border: none !important;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 img, svg {
   display: block;
   margin: 0 auto;
