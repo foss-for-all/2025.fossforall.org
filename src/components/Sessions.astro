@@ -43,7 +43,7 @@ interface Track {
     description: Map<string, string>;
     color: string;
     position: number;
-    requires_access_code:boolean;
+    requires_access_code: boolean;
 }
 
 const sessionResponse = await fetch(
@@ -75,14 +75,17 @@ const trackResponse = await fetch(
     },
 );
 const tracks: Track[] = (await trackResponse.json())["results"];
-console.log(tracks)
+console.log(tracks);
 ---
 
 <div class="columns is-multiline">
     {
         sessions.map((session: Submission) => (
             <div class="column is-full">
-                <div class="card">
+                <div
+                    class="card"
+                    onclick={`location.href = "${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}"`}
+                >
                     <div class="card-content">
                         <p class="title is-4">{session.title}</p>
                         <div class="content">
@@ -104,14 +107,13 @@ console.log(tracks)
                             <span class="icon">
                                 <i class="fa-solid fa-tags" />
                             </span>
-                             <span>
-                                        {
-                                            tracks.find(
-                                                (track) =>
-                                                    track.id == session.track,
-                                            )?.name[lang]
-                                        }
-                                    </span>
+                            <span>
+                                {
+                                    tracks.find(
+                                        (track) => track.id == session.track,
+                                    )?.name[lang]
+                                }
+                            </span>
                             <span class="icon">
                                 <i class="fa-solid fa-language" />
                             </span>
