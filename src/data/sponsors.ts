@@ -5,6 +5,7 @@ import OnlyofficeLogo from "@/assets/sponsors/onlyoffice.svg";
 import ExpressVPNLogo from "@/assets/sponsors/expressvpn.svg";
 import DeepComputingLogo from "@/assets/sponsors/DeepComputing.svg";
 import NipaLogo from "@/assets/sponsors/nipa.svg";
+import StadiaMapsLogo from "@/assets/sponsors/stadiamaps.svg";
 
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
@@ -68,6 +69,12 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           descriptionMarkdown: `Formed in 2022 by a group of dedicated RISC-V pioneers, DeepComputing is headquartered in Hong Kong. We share an enduring passion for advancing the adoption and implementation of RISC-V beyond existing ISA chipsets. Our aim is to create bold new products. With faith in our diverse and dedicated partners, we believe in the promising new future of RISC-V. Together, we will focus on driving the development of the RISC-V ecosystem with products such as laptops, pads, workstations, headphones, smart watches, smart speakers, AR glasses and autonomous driving for toys and real world vehicles.`,
           logoSrc: DeepComputingLogo.src,
           link: "https://deepcomputing.io/",
+        },
+        {
+          name: "Stadia Maps",
+          descriptionMarkdown: `Stadia Maps offers location APIs for humans. Thousands of companies of all sizes use Stadia Maps to contextualize their data on a map, solve logistics problems, build fitness experiences, and more. We back our customers up with no-surprise billing, world-class reliability, strong privacy guarantees, and real human support.`,
+          logoSrc: StadiaMapsLogo.src,
+          link: "https://stadiamaps.com/",
         },
       ],
     },
