@@ -7,7 +7,7 @@ export default {
     "nav.venueSafety": "Venue & Safety Information",
     "nav.programs": "Programs",
     "nav.cfp": "Call for Proposals (Closed)",
-    "nav.schedules": "Schedules (TBD)",
+    "nav.schedules": "Schedules",
     "nav.exhibitions": "Exhibitions",
     "nav.socialEvents": "Social Events",
     "nav.sponsorsPatrons": "Sponsors & Patrons",
