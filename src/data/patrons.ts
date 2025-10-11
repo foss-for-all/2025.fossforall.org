@@ -15,4 +15,12 @@ export const PatronList = [
     name: "한영빈",
     affiliation: "FOSS for All",
   },
+  {
+    name: "정재훈",
+    affiliation: "(주)대성파인텍",
+  },
+  {
+    name: "박현우",
+    affiliation: "zerobased.co",
+  },
 ];
