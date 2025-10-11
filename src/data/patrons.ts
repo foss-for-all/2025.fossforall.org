@@ -23,4 +23,8 @@ export const PatronList = [
     name: "박현우",
     affiliation: "zerobased.co",
   },
+  {
+    name: "윤성수",
+    affiliation: "시토리",
+  },
 ];
