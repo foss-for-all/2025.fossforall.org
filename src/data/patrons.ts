@@ -27,4 +27,12 @@ export const PatronList = [
     name: "윤성수",
     affiliation: "시토리",
   },
+  {
+    name: "최호준",
+    affiliation: "-",
+  },
+  {
+    name: "Andrew Zah",
+    affiliation: "Open Source Systems",
+  },
 ];
