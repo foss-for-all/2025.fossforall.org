@@ -6,6 +6,7 @@ import ExpressVPNLogo from "@/assets/sponsors/expressvpn.svg";
 import DeepComputingLogo from "@/assets/sponsors/DeepComputing.svg";
 import NipaLogo from "@/assets/sponsors/nipa.svg";
 import StadiaMapsLogo from "@/assets/sponsors/stadiamaps.svg";
+import OpdcLogo from "@/assets/sponsors/opdc.svg";
 
 import type { ui } from "@/i18n/ui";
 import { useTranslatedPath } from "@/i18n/utils";
@@ -39,6 +40,12 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           As an international company, ONLYOFFICE has employees and contributors across the globe, with offices located in Singapore, Dallas, Riga, London, Shanghai, Belgrade, Yerevan, and Tashkent.`,
           logoSrc: OnlyofficeLogo.src,
           link: "https://www.onlyoffice.com",
+        },
+         {
+          name: "OPDC",
+          descriptionMarkdown: `(사)오픈플랫폼 개발자커뮤니티(Open Platform Developer Community, OPDC)는 오픈플랫폼 및 이와 관련된 서비스의 개발 생산성과 품질을 향상시키고 관련 소프트웨어 개발자의 역량 강화와 상호 교류에 헌신하며, 오픈 소스 소프트웨어 개발과 확산을 위한 활동 지원을 통해 오픈 소스 기술참상에 기여함을 그 설립목적으로 활동을 수행 합니다`,
+          logoSrc: OpdcLogo.src,
+          link: "https://opdc.kr/",
         },
       ],
     },
