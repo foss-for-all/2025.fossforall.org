@@ -129,6 +129,10 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
           href: "mailto:contact@fossforall.org",
         },
         {
+          label: t("footer.privacy"),
+          href: "https://fossforall.org/disclosures/privacy/2025.fossforall.org/",
+        },
+        {
           label: t("footer.sourceCode"),
           href: "https://github.com/foss-for-all/2025.fossforall.org",
         },

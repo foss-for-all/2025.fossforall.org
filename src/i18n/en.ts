@@ -27,6 +27,7 @@ export default {
     "footer.contactEmail": "Contact us via email",
     "footer.sourceCode": "See Source code",
     "footer.learnMore": "Learn more about FOSS for All",
+    "footer.privacy": "Privacy policy",
     "banner.sponsors": "Our Sponsors",
     "banner.blog": "Recent Updates",
     "banner.speakers": "Keynote Speakers",
