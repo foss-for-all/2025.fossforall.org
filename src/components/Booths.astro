@@ -1,0 +1,28 @@
+---
+const { lang } = Astro.props;
+import { BoothList } from "@/data/booth";
+---
+
+<div class="columns is-multiline">
+    {
+        BoothList.map((booth) => (
+            <div class="column is-one-quarter">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-2by1">
+                            <img
+                                style="object-fit: contain;"
+                                src={booth.logoSrc}
+                                alt={booth.name}
+                            />
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p class="title is-4">{booth.name}</p>
+                        <div class="content">{booth.description}</div>
+                    </div>
+                </div>
+            </div>
+        ))
+    }
+</div>
