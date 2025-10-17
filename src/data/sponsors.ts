@@ -9,10 +9,8 @@ import StadiaMapsLogo from "@/assets/sponsors/stadiamaps.svg";
 import OpdcLogo from "@/assets/sponsors/opdc.svg";
 
 import type { ui } from "@/i18n/ui";
-import { useTranslatedPath } from "@/i18n/utils";
 
 export const SponsorsList = (lang: keyof typeof ui) => {
-  const translatePath = useTranslatedPath(lang);
 
   return [
     {

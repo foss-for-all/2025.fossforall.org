@@ -12,6 +12,7 @@ interface SponsorLogoWithModalProps {
 
 export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps) {
     const [isActive, setIsActive] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     function openModal() {
         setIsActive(true);
@@ -23,19 +24,25 @@ export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps)
 
     return (
         <div>
-<img 
-  src={item.logoSrc} 
-  alt={item.name} 
+<img
+  src={item.logoSrc}
+  alt={item.name}
   style={{
     height: 'auto',
-    maxHeight: group.imageHeight, // 최소 크기 이상 유지
-    width: 'auto', 
-    minHeight: group.imageHeight, // 공식 최소 크기 이하 축소 방지
+    maxHeight: group.imageHeight,
+    width: 'auto',
+    minHeight: group.imageHeight,
     margin: '0 auto',
-    display: 'block', // 외부 여백 최소화 위해 inline-block 방지
-    cursor: 'pointer'
-  }} 
+    display: 'block',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease-in-out',
+    opacity: isHovered ? 0.8 : 1,
+    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+    filter: isHovered ? 'brightness(1.1)' : 'brightness(1)',
+  }}
   onClick={openModal}
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
 />
             <div className={`modal ${isActive ? 'is-active' : ''}`}>
                 <div className="modal-background" onClick={closeModal}></div>
@@ -46,7 +53,10 @@ export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps)
                     </header>
                     <section className="modal-card-body">
                         <img
-                            src={item.logoSrc}  className="mb-3" style={{maxHeight: "10rem"}}
+                            src={item.logoSrc}
+                            alt={item.name}
+                            className="mb-3"
+                            style={{maxHeight: "10rem"}}
                         />
                         <div dangerouslySetInnerHTML={{ __html: item.descriptionMarkdown }}></div>
                         <a href={item.link} target="_blank" rel="noopener noreferrer">{item.link}</a>

@@ -2,9 +2,19 @@
 import { SponsorLogoWithModal } from "@/components/SponsorLogoWithModal";
 import { SponsorsList } from "@/data/sponsors";
 import { getLangFromUrl } from "@/i18n/utils";
+import { renderMarkdown } from "@/lib/utils";
 import type { ui } from "@/i18n/ui";
 const lang = getLangFromUrl(Astro.url);
-const sponsors = SponsorsList(lang as keyof typeof ui);
+let sponsors = SponsorsList(lang as keyof typeof ui);
+
+// Process markdown in descriptions at build time
+sponsors = await Promise.all(sponsors.map(async (group) => ({
+  ...group,
+  items: await Promise.all(group.items.map(async (item) => ({
+    ...item,
+    descriptionMarkdown: await renderMarkdown(item.descriptionMarkdown),
+  }))),
+})));
 ---
 
 { sponsors.map((group) => (
