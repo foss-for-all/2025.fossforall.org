@@ -46,6 +46,11 @@ interface Track {
     requires_access_code: boolean;
 }
 
+interface SubmissionType {
+    id: number;
+    name: string;
+}
+
 const sessionResponse = await fetch(
     `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`,
     {
@@ -75,53 +80,143 @@ const trackResponse = await fetch(
     },
 );
 const tracks: Track[] = (await trackResponse.json())["results"];
-console.log(tracks);
+
+let submissionTypes: SubmissionType[] = [];
+try {
+    const submissionTypeResponse = await fetch(
+        `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submission_types/`,
+        {
+            headers: new Headers({
+                Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+            }),
+        },
+    );
+    if (submissionTypeResponse.ok) {
+        submissionTypes = (await submissionTypeResponse.json())["results"];
+    }
+} catch (error) {
+    console.error("Failed to fetch submission types:", error);
+}
+
+// Map submission type IDs to display names
+const typeIdToName: { [key: number]: string } = {
+    1: "Session",
+    8: "Lightning Talk",
+};
+
+// Find keynote speakers (Hong Minhee and RichiH)
+const keynoteSpakers = speakers
+    .filter(
+        (speaker) =>
+            speaker.name.includes("Hong Minhee") ||
+            speaker.name.includes("RichiH"),
+    )
+    .map((speaker) => speaker.code);
+
+// Group sessions: separate keynotes from other submissions by type
+interface GroupedSessionsMap {
+    [key: string]: Submission[];
+}
+const groupedSessions: GroupedSessionsMap = {
+    Keynote: [],
+};
+
+sessions.forEach((session) => {
+    // Check if this is a keynote (has keynote speakers)
+    const isKeynote = session.speakers.some((speaker) =>
+        keynoteSpakers.includes(speaker),
+    );
+
+    if (isKeynote) {
+        groupedSessions["Keynote"].push(session);
+    } else {
+        // Group by submission type name
+        const typeName =
+            typeIdToName[session.submission_type] ||
+            submissionTypes.find((t) => t.id === session.submission_type)?.name ||
+            `Type ${session.submission_type}`;
+        if (!groupedSessions[typeName]) {
+            groupedSessions[typeName] = [];
+        }
+        groupedSessions[typeName].push(session);
+    }
+});
+
+// Define custom sort order for submission types
+const typeOrder = ["Keynote", "Session", "Lightning Talk"];
+
+// Sort groups by custom order
+const sortedGroups = Object.entries(groupedSessions).sort((a, b) => {
+    const indexA = typeOrder.findIndex((type) =>
+        a[0].toLowerCase().includes(type.toLowerCase()),
+    );
+    const indexB = typeOrder.findIndex((type) =>
+        b[0].toLowerCase().includes(type.toLowerCase()),
+    );
+
+    // If both are in the order list, use that order
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    // If only one is in the order list, prioritize it
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    // Otherwise, keep alphabetical order
+    return a[0].localeCompare(b[0]);
+});
 ---
 
 <div class="columns is-multiline">
     {
-        sessions.map((session: Submission) => (
-            <div class="column is-full">
-                <div
-                    class="card"
-                    onclick={`location.href = "${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}"`}
-                >
-                    <div class="card-content">
-                        <p class="title is-4">{session.title}</p>
-                        <div class="content">
-                            {session.speakers.map((item) => (
-                                <>
+        sortedGroups.map(([typeName, groupSessions]) => (
+            <>
+                <div class="column is-full">
+                    <h2 class="title is-3" style="margin-top: 2rem; margin-bottom: 1rem;">
+                        {typeName}
+                    </h2>
+                </div>
+                {groupSessions.map((session: Submission) => (
+                    <div class="column is-full">
+                        <div
+                            class="card"
+                            onclick={`location.href = "${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}"`}
+                        >
+                            <div class="card-content">
+                                <p class="title is-4">{session.title}</p>
+                                <div class="content">
+                                    {session.speakers.map((item) => (
+                                        <>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-person" />
+                                            </span>
+                                            <span>
+                                                {
+                                                    speakers.find(
+                                                        (speaker) =>
+                                                            speaker.code == item,
+                                                    )?.name
+                                                }
+                                            </span>
+                                        </>
+                                    ))}
                                     <span class="icon">
-                                        <i class="fa-solid fa-person" />
+                                        <i class="fa-solid fa-tags" />
                                     </span>
                                     <span>
                                         {
-                                            speakers.find(
-                                                (speaker) =>
-                                                    speaker.code == item,
-                                            )?.name
+                                            tracks.find(
+                                                (track) => track.id == session.track,
+                                            )?.name[lang]
                                         }
                                     </span>
-                                </>
-                            ))}
-                            <span class="icon">
-                                <i class="fa-solid fa-tags" />
-                            </span>
-                            <span>
-                                {
-                                    tracks.find(
-                                        (track) => track.id == session.track,
-                                    )?.name[lang]
-                                }
-                            </span>
-                            <span class="icon">
-                                <i class="fa-solid fa-language" />
-                            </span>
-                            <span>{session.content_locale}</span>
+                                    <span class="icon">
+                                        <i class="fa-solid fa-language" />
+                                    </span>
+                                    <span>{session.content_locale}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                ))}
+            </>
         ))
     }
 </div>
