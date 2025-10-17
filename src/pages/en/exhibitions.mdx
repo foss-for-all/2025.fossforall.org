@@ -3,5 +3,7 @@ layout: src/layouts/Page.astro
 title: Exhibitions
 description: Check out community booth and sponsor booth information.
 ---
+import { getLangFromUrl } from "@/i18n/utils";
+import Booths from "@/components/Booths.astro";
 
-TBD
+<Booths lang={getLangFromUrl(Astro.url)} />
