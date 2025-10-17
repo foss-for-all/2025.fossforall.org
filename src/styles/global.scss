@@ -11,8 +11,15 @@ body{
   border: none !important;
 }
 
-.card:hover {
+.card {
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.95;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
 }
 
 img, svg {
@@ -20,6 +27,5 @@ img, svg {
   margin: 0 auto;
   max-width: 100%;
   height: auto;
-  min-height: var(--logo-min-height);
 }
 

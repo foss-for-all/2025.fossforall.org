@@ -1,6 +1,6 @@
 ---
 import RssParser from "rss-parser";
-import { sliceStringByBytes } from "@/lib/utils";
+import { BlogCard } from "@/components/BlogCard";
 
 const {feedUrl} = Astro.props;
 const parser = new RssParser();
@@ -12,20 +12,13 @@ const posts = feed.items.slice(0, 3);
   <div class="columns is-multiline">
     {posts.map((post) => (
       <div class="column is-one-third">
-        <div class="card">
-          <div class="card-content">
-            <p class="title">
-              <a href={post.link}>{post.title}</a>
-            </p>
-            <p class="subtitle">
-              {post.pubDate && new Date(post.pubDate).toLocaleDateString()}
-            </p>
-            <div class="content">
-              {sliceStringByBytes(post.contentSnippet, 0, 200)}
-              <br />
-            </div>
-          </div>
-        </div>
+        <BlogCard
+          client:load
+          title={post.title as string}
+          link={post.link as string}
+          pubDate={post.pubDate as string}
+          contentSnippet={post.contentSnippet as string}
+        />
       </div>
     ))}
   </div>

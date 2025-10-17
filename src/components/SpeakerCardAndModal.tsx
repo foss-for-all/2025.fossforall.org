@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Speaker } from "@/models/Speaker";
-import { sliceStringByBytes, stripHtmlTags } from "@/lib/utils";
+import { sliceStringByBytes } from "@/lib/utils";
 
 interface SpeakerCardAndModalProps {
   speaker: Speaker;
@@ -38,10 +38,21 @@ export function SpeakerCardAndModal({
           </figure>
         </div>
         <div className="card-content">
-          <p className="title is-4">{speaker.name}</p>
-          <div className="content">
-            {sliceStringByBytes(stripHtmlTags(speaker.biography), 0, 100)}...
-          </div>
+          <p className="title is-4">
+            {speaker.organization ? `${speaker.name} - ${speaker.organization}` : speaker.name}
+          </p>
+          <div
+            className="content"
+            style={{
+              minHeight: '6em',
+              maxHeight: '6em',
+              overflow: 'hidden',
+              display: '-webkit-box',
+              WebkitLineClamp: 4,
+              WebkitBoxOrient: 'vertical',
+            }}
+            dangerouslySetInnerHTML={{ __html: speaker.biography }}
+          />
         </div>
       </div>
       <div className={`modal ${isActive ? "is-active" : ""}`}>
@@ -67,7 +78,9 @@ export function SpeakerCardAndModal({
                 alt={speaker.name}
               />
             </figure>
-            <p className="title is-4 mt-4">{speaker.name}</p>
+            <p className="title is-4 mt-4">
+              {speaker.organization ? `${speaker.name} - ${speaker.organization}` : speaker.name}
+            </p>
             <div dangerouslySetInnerHTML={{ __html: speaker.biography }}></div>
           </section>
         </div>

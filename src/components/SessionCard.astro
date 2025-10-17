@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  speakers: Array<{ name: string }>;
+  track: string;
+  locale: string;
+}
+
+const { title, speakers, track, locale } = Astro.props;
+---
+
+<style>
+  .session-card {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .session-card:hover {
+    opacity: 0.85;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+</style>
+
+<div class="card session-card">
+  <div class="card-content">
+    <p class="title is-4">{title}</p>
+    <div class="content">
+      {speakers.map((speaker) => (
+        <>
+          <span class="icon">
+            <i class="fa-solid fa-person"></i>
+          </span>
+          <span>{speaker.name}</span>
+        </>
+      ))}
+      <span class="icon">
+        <i class="fa-solid fa-tags"></i>
+      </span>
+      <span>{track}</span>
+      <span class="icon">
+        <i class="fa-solid fa-language"></i>
+      </span>
+      <span>{locale}</span>
+    </div>
+  </div>
+</div>

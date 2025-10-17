@@ -1,10 +1,11 @@
 ---
 const { lang } = Astro.props;
-import { sliceStringByBytes, renderMarkdown } from "@/lib/utils";
+import { renderMarkdown } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
 import { createHash } from 'crypto';
 import type { Speaker } from "@/models/Speaker";
 import { SpeakerCardAndModal } from "@/components/SpeakerCardAndModal";
+import { SpeakerOrganizations } from "@/data/speakerOrganizations";
 
 const config = WebsiteConfig(lang);
 
@@ -20,6 +21,17 @@ let speakers: Speaker[] = (await response.json())["results"];
 const {
   speakersToExpose = [],
 } = Astro.props;
+
+// Merge local organization data with API speaker data
+speakers = speakers.map((speaker) => {
+    const orgData = SpeakerOrganizations.find(
+        (org) => org.name === speaker.name
+    );
+    return {
+        ...speaker,
+        organization: orgData?.organization || speaker.organization,
+    };
+});
 
 // Process markdown in biography at build time
 speakers = await Promise.all(speakers.map(async (speaker) => ({

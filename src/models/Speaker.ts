@@ -9,4 +9,5 @@ export interface Speaker {
   timezone: string;
   locale: string;
   has_arrived: boolean;
+  organization?: string;
 }
