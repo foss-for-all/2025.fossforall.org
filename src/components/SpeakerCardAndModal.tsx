@@ -37,8 +37,15 @@ export function SpeakerCardAndModal({
             />
           </figure>
         </div>
-        <div className="card-content">
-          <p className="title is-4">
+        <div className="card-content" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '12em',
+        }}>
+          <p className="title is-4" style={{
+            flexShrink: 0,
+            marginBottom: '0.5em',
+          }}>
             {speaker.organization ? `${speaker.name} - ${speaker.organization}` : speaker.name}
           </p>
           <div
