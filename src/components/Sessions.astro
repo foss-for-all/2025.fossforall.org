@@ -75,7 +75,6 @@ const trackResponse = await fetch(
     },
 );
 const tracks: Track[] = (await trackResponse.json())["results"];
-console.log(tracks);
 ---
 
 <div class="columns is-multiline">
