@@ -9,6 +9,20 @@ import { SpeakerOrganizations } from "@/data/speakerOrganizations";
 
 const config = WebsiteConfig(lang);
 
+interface Submission {
+    code: string;
+    title: string;
+    speakers: string[];
+    submission_type: number;
+    track: number;
+    content_locale: string;
+}
+
+interface Track {
+    id: number;
+    name: Map<string, string>;
+}
+
 const response = await fetch(
     `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`,
     {
@@ -21,6 +35,28 @@ let speakers: Speaker[] = (await response.json())["results"];
 const {
   speakersToExpose = [],
 } = Astro.props;
+
+// Fetch sessions data
+const sessionResponse = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`,
+    {
+        headers: new Headers({
+            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+        }),
+    },
+);
+const sessions: Submission[] = (await sessionResponse.json())["results"];
+
+// Fetch tracks data
+const trackResponse = await fetch(
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/tracks/`,
+    {
+        headers: new Headers({
+            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+        }),
+    },
+);
+const tracks: Track[] = (await trackResponse.json())["results"];
 
 // Merge local organization data with API speaker data
 speakers = speakers.map((speaker) => {
@@ -43,7 +79,7 @@ speakers = await Promise.all(speakers.map(async (speaker) => ({
 <div class="columns is-multiline">
     {
         speakers.map((speaker: Speaker) => speakersToExpose.includes(speaker.code) ? (
-        <SpeakerCardAndModal client:load speaker={speaker} gravatarHash={createHash("SHA256").update(speaker.email, "utf-8").digest("hex")} />
+        <SpeakerCardAndModal client:load speaker={speaker} sessions={sessions} tracks={tracks} config={config} lang={lang} gravatarHash={createHash("SHA256").update(speaker.email, "utf-8").digest("hex")} />
         ):(<></>))
     }
 </div>
