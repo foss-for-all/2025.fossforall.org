@@ -22,7 +22,7 @@ export function SpeakerCardAndModal({
   }
 
   return (
-    <div className="column is-one-quarter">
+    <div className="column is-one-third">
       <div className="card" onClick={openModal}>
         <div className="card-image">
           <figure className="image is-square">
