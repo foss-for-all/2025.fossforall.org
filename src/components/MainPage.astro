@@ -45,19 +45,28 @@ const speakersToExpose = config.pretalx.keynoteSpeakers;
                             class="button is-large m-1 is-primary"
                             href="https://event-us.kr/fossforall/event/110400"
                         >
-                            {t("home.hero.register")}
+                            <span class="icon">
+                                <i class="fa-solid fa-ticket"></i>
+                            </span>
+                            <span>{t("home.hero.register")}</span>
                         </a>
                         <a
                             class="button is-large m-1"
                             href={translatePath("/schedules")}
                         >
                             {t("nav.schedules")}
-                            <a
-                                class="button is-large m-1"
-                                href="https://discord.gg/YbXE6ZMpbX"
-                            >
-                                {t("home.hero.discord")}
-                            </a>
+                        </a>
+                        <a
+                            class="button is-large m-1"
+                            href="https://discord.gg/YbXE6ZMpbX"
+                        >
+                            {t("home.hero.discord")}
+                        </a>
+                        <a
+                            class="button is-large m-1"
+                            href={translatePath("/booths")}
+                        >
+                            {t("nav.booths")}
                         </a>
                     </div>
                 </div>
