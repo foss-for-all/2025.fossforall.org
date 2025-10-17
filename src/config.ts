@@ -62,10 +62,6 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
             { label: t("nav.schedules"), href: translatePath(`/schedules/`) },
             { label: t("nav.speakers"), href: translatePath(`/speakers/`) },
             {
-              label: t("nav.exhibitions"),
-              href: translatePath(`/exhibitions/`),
-            },
-            {
               label: t("nav.booths"),
               href: translatePath(`/booths/`),
             },
