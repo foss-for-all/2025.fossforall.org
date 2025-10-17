@@ -16,6 +16,7 @@ export default {
     "nav.patrons": "Patrons",
     "nav.speakers": "Speakers",
     "nav.sessions": "Sessions",
+    "nav.booths": "Booths",
     "home.hero.date": "8th November 2025",
     "home.hero.venue": "Kwangwoon University",
     "home.hero.cfp": "Propose session or booth",
@@ -32,5 +33,6 @@ export default {
     "banner.blog": "Recent Updates",
     "banner.speakers": "Keynote Speakers",
     "banner.speakers.more": "More Speakers",
+    "booth.organizers": "Organizers",
   },
 };

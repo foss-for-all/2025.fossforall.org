@@ -16,6 +16,7 @@ export default {
     "nav.patrons": "개인후원",
     "nav.speakers": "연사",
     "nav.sessions": "세션",
+    "nav.booths": "부스 목록",
     "home.hero.date": "2025년 11월 8일",
     "home.hero.venue": "광운대학교",
     "home.hero.cfp": "발표/부스 지원하기",
@@ -32,5 +33,6 @@ export default {
     "banner.blog": "최근 소식",
     "banner.speakers": "기조연사",
     "banner.speakers.more": "더 많은 연사 확인",
+    "booth.organizers": "소속",
   },
 };
