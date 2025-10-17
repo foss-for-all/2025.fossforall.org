@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Speaker } from "@/models/Speaker";
-import { sliceStringByBytes } from "@/lib/utils";
+import { sliceStringByBytes, stripHtmlTags } from "@/lib/utils";
 
 interface SpeakerCardAndModalProps {
   speaker: Speaker;
@@ -40,7 +40,7 @@ export function SpeakerCardAndModal({
         <div className="card-content">
           <p className="title is-4">{speaker.name}</p>
           <div className="content">
-            {sliceStringByBytes(speaker.biography, 0, 100)}...
+            {sliceStringByBytes(stripHtmlTags(speaker.biography), 0, 100)}...
           </div>
         </div>
       </div>

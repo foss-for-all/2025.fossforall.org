@@ -1,11 +1,10 @@
 ---
 const { lang } = Astro.props;
-import { sliceStringByBytes } from "@/lib/utils";
+import { sliceStringByBytes, renderMarkdown } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
 import { createHash } from 'crypto';
 import type { Speaker } from "@/models/Speaker";
 import { SpeakerCardAndModal } from "@/components/SpeakerCardAndModal";
-import { createHash } from "crypto";
 
 const config = WebsiteConfig(lang);
 
@@ -17,10 +16,16 @@ const response = await fetch(
         }),
     },
 );
-const speakers: Speaker[] = (await response.json())["results"];
+let speakers: Speaker[] = (await response.json())["results"];
 const {
   speakersToExpose = [],
 } = Astro.props;
+
+// Process markdown in biography at build time
+speakers = await Promise.all(speakers.map(async (speaker) => ({
+    ...speaker,
+    biography: await renderMarkdown(speaker.biography),
+})));
 ---
 
 <div class="columns is-multiline">
