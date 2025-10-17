@@ -66,6 +66,10 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
               href: translatePath(`/exhibitions/`),
             },
             {
+              label: t("nav.booths"),
+              href: translatePath(`/booths/`),
+            },
+            {
               label: t("nav.socialEvents"),
               href: translatePath(`/social-events/`),
             },
@@ -88,21 +92,17 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
       ],
 
       rightMenu: (page: { path: string; i18n: boolean }) => {
-        const langPickerItems = (
-          Object.keys(languages) as Array<keyof typeof ui>
-        ).map((langCode) => {
-          const label = languages[langCode];
+        const currentLang = lang;
+        const otherLang = currentLang === "ko" ? "en" : "ko";
 
-          const translatedPath =
-            !showDefaultLang && langCode === defaultLang
-              ? page.path
-              : `/${langCode}${page.path}`;
-
-          return {
-            label,
-            href: translatedPath,
-          };
-        });
+        let otherLangPath: string;
+        if (lang === "ko") {
+          // ko → en: "/" → "/en/", "/about/" → "/en/about/"
+          otherLangPath = "/en" + page.path;
+        } else {
+          // en → ko: "/en/" → "/", "/en/about/" → "/about/"
+          otherLangPath = page.path.replace("/en/", "/");
+        }
 
         return [
           {
@@ -110,12 +110,12 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
             href: "https://fossforall.org",
           },
           {
-            label: "🎟️",
+            label: "🎟️ " + t("home.hero.register"),
             href: "https://event-us.kr/fossforall/event/110400",
           },
           {
-            label: "🌐",
-            items: langPickerItems,
+            label: languages[otherLang as keyof typeof ui],
+            href: otherLangPath,
           },
         ];
       },
