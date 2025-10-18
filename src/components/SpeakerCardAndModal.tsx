@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Speaker } from "@/models/Speaker";
+import { ui, defaultLang } from "@/i18n/ui";
 import { sliceStringByBytes } from "@/lib/utils";
 
 interface Submission {
@@ -28,7 +29,7 @@ interface SpeakerCardAndModalProps {
   sessions: Submission[];
   tracks: Track[];
   config: Config;
-  lang: string;
+  lang: keyof typeof ui;
   gravatarHash: string;
 }
 
@@ -40,6 +41,9 @@ export function SpeakerCardAndModal({
   lang,
   gravatarHash,
 }: SpeakerCardAndModalProps) {
+  const t = (key: keyof typeof ui[typeof defaultLang]) => {
+      return ui[lang]?.[key] || ui[defaultLang][key];
+  }
   const [isActive, setIsActive] = useState(false);
 
   // Get speaker's sessions
@@ -50,7 +54,7 @@ export function SpeakerCardAndModal({
   // Helper function to get track name
   const getTrackName = (trackId: number) => {
     const track = tracks.find(t => t.id === trackId);
-    return track?.name[lang] || track?.name['en'] || 'Unknown';
+    return track?.name[lang] || track?.name['en'] || t('speakers.unknownTrack');
   };
 
   function openModal() {
@@ -68,11 +72,7 @@ export function SpeakerCardAndModal({
           <figure className="image is-square">
             <img
               style={{ objectFit: "cover" }}
-              src={
-                speaker.avatar_url == ""
-                  ? `https://gravatar.com/avatar/${gravatarHash}?s=200`
-                  : speaker.avatar_url
-              }
+src={!speaker.avatar_url ? `https://gravatar.com/avatar/${gravatarHash}?s=200&d=identicon` : speaker.avatar_url}
               alt={speaker.name}
             />
           </figure>
@@ -118,11 +118,7 @@ export function SpeakerCardAndModal({
             <figure className="image is-square">
               <img
                 style={{ objectFit: "cover" }}
-                src={
-                  speaker.avatar_url == ""
-                    ? `https://gravatar.com/avatar/${gravatarHash}?s=200`
-                    : speaker.avatar_url
-                }
+                src={!speaker.avatar_url ? `https://gravatar.com/avatar/${gravatarHash}?s=200&d=identicon` : speaker.avatar_url}
                 alt={speaker.name}
               />
             </figure>
@@ -136,7 +132,7 @@ export function SpeakerCardAndModal({
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
                   <i className="fa-solid fa-calendar-days" style={{ color: '#3273dc', fontSize: '1.1em' }}></i>
                   <p className="subtitle is-5" style={{ margin: 0 }}>
-                    Presenting
+                    {t('speakers.presenting')}
                   </p>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>

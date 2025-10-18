@@ -32,6 +32,10 @@ export default {
     "banner.blog": "최근 소식",
     "banner.speakers": "기조연사",
     "banner.speakers.more": "더 많은 연사 확인",
+    "speakers.keynote": "기조 연사",
+    "speakers.general": "연사",
+    "speakers.presenting": "발표",
+    "speakers.unknownTrack": "미정",
     "booth.organizers": "소속",
   },
 };

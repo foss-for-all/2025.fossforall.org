@@ -1,5 +1,6 @@
 ---
-const { lang } = Astro.props;
+const { lang, speakersToExpose = [] } = Astro.props;
+import { useTranslations } from "@/i18n/utils";
 import { renderMarkdown } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
 import { createHash } from 'crypto';
@@ -8,6 +9,7 @@ import { SpeakerCardAndModal } from "@/components/SpeakerCardAndModal";
 import { SpeakerOrganizations } from "@/data/speakerOrganizations";
 
 const config = WebsiteConfig(lang);
+const t = useTranslations(lang);
 
 interface Submission {
     code: string;
@@ -23,40 +25,40 @@ interface Track {
     name: Map<string, string>;
 }
 
-const response = await fetch(
-    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`,
-    {
-        headers: new Headers({
-            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
-        }),
-    },
-);
-let speakers: Speaker[] = (await response.json())["results"];
-const {
-  speakersToExpose = [],
-} = Astro.props;
+async function fetchAll(url: string, headers: Headers): Promise<any[]> {
+    let results: any[] = [];
+    let nextUrl: string | null = url;
 
-// Fetch sessions data
-const sessionResponse = await fetch(
-    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`,
-    {
-        headers: new Headers({
-            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
-        }),
-    },
-);
-const sessions: Submission[] = (await sessionResponse.json())["results"];
+    while (nextUrl) {
+        const response = await fetch(nextUrl, { headers });
+        const data = await response.json();
+        results = results.concat(data.results);
+        nextUrl = data.next;
+    }
+    return results;
+}
 
-// Fetch tracks data
-const trackResponse = await fetch(
-    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/tracks/`,
-    {
-        headers: new Headers({
-            Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
-        }),
-    },
-);
-const tracks: Track[] = (await trackResponse.json())["results"];
+const headers = new Headers({
+    Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
+});
+
+const speakersUrl = `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`;
+let speakers: Speaker[] = await fetchAll(speakersUrl, headers);
+
+const submissionsUrl = `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`;
+const sessions: Submission[] = await fetchAll(submissionsUrl, headers);
+
+const tracksUrl = `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/tracks/`;
+const tracks: Track[] = await fetchAll(tracksUrl, headers);
+
+// Filter speakers to only include those with confirmed submissions
+const acceptedSpeakerCodes = new Set<string>();
+sessions.forEach(session => {
+    session.speakers.forEach(speakerCode => {
+        acceptedSpeakerCodes.add(speakerCode);
+    });
+});
+speakers = speakers.filter(speaker => acceptedSpeakerCodes.has(speaker.code));
 
 // Merge local organization data with API speaker data
 speakers = speakers.map((speaker) => {
@@ -74,12 +76,30 @@ speakers = await Promise.all(speakers.map(async (speaker) => ({
     ...speaker,
     biography: await renderMarkdown(speaker.biography),
 })));
+
+const keynoteSpeakerCodes = config.pretalx.keynoteSpeakers;
+const keynoteSpeakers = speakers.filter(s => keynoteSpeakerCodes.includes(s.code));
+const otherSpeakers = speakers.filter(s => !keynoteSpeakerCodes.includes(s.code));
 ---
 
+<h2 class="title is-2">{t('speakers.keynote')}</h2>
 <div class="columns is-multiline">
     {
-        speakers.map((speaker: Speaker) => speakersToExpose.includes(speaker.code) ? (
-        <SpeakerCardAndModal client:load speaker={speaker} sessions={sessions} tracks={tracks} config={config} lang={lang} gravatarHash={createHash("SHA256").update(speaker.email, "utf-8").digest("hex")} />
-        ):(<></>))
+        keynoteSpeakers
+            .filter((speaker: Speaker) => speakersToExpose.length === 0 || speakersToExpose.includes(speaker.code))
+            .map((speaker: Speaker) => (
+                <SpeakerCardAndModal client:load speaker={speaker} sessions={sessions} tracks={tracks} config={config} lang={lang} gravatarHash={createHash("SHA256").update(speaker.email || "", "utf-8").digest("hex")} />
+            ))
+    }
+</div>
+
+<h2 class="title is-2">{t('speakers.general')}</h2>
+<div class="columns is-multiline">
+    {
+        otherSpeakers
+            .filter((speaker: Speaker) => speakersToExpose.length === 0 || speakersToExpose.includes(speaker.code))
+            .map((speaker: Speaker) => (
+                <SpeakerCardAndModal client:load speaker={speaker} sessions={sessions} tracks={tracks} config={config} lang={lang} gravatarHash={createHash("SHA256").update(speaker.email || "", "utf-8").digest("hex")} />
+            ))
     }
 </div>

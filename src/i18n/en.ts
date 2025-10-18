@@ -32,6 +32,10 @@ export default {
     "banner.blog": "Recent Updates",
     "banner.speakers": "Keynote Speakers",
     "banner.speakers.more": "More Speakers",
+    "speakers.keynote": "Keynote Speakers",
+    "speakers.general": "Speakers",
+    "speakers.presenting": "Presenting",
+    "speakers.unknownTrack": "Unknown",
     "booth.organizers": "Organizers",
   },
 };
