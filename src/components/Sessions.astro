@@ -175,48 +175,69 @@ const sortedGroups = Object.entries(groupedSessions).sort((a, b) => {
                 </div>
                 {groupSessions.map((session: Submission) => (
                     <div class="column is-full">
-                        <div
-                            class="card"
-                            onclick={`location.href = "${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}"`}
+                        <a
+                            href={`${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}`}
+                            class="session-card-link"
                         >
-                            <div class="card-content">
-                                <p class="title is-4">{session.title}</p>
-                                <div class="content">
-                                    {session.speakers.map((item) => (
-                                        <>
-                                            <span class="icon">
-                                                <i class="fa-solid fa-person" />
-                                            </span>
-                                            <span>
-                                                {
-                                                    speakers.find(
-                                                        (speaker) =>
-                                                            speaker.code == item,
-                                                    )?.name
-                                                }
-                                            </span>
-                                        </>
-                                    ))}
-                                    <span class="icon">
-                                        <i class="fa-solid fa-tags" />
-                                    </span>
-                                    <span>
-                                        {
-                                            tracks.find(
-                                                (track) => track.id == session.track,
-                                            )?.name[lang]
-                                        }
-                                    </span>
-                                    <span class="icon">
-                                        <i class="fa-solid fa-language" />
-                                    </span>
-                                    <span>{session.content_locale}</span>
+                            <div class="card">
+                                <div class="card-content">
+                                    <p class="title is-4">{session.title}</p>
+                                    <div class="content">
+                                        {session.speakers.map((item) => (
+                                            <>
+                                                <span class="icon">
+                                                    <i class="fa-solid fa-person" />
+                                                </span>
+                                                <span>
+                                                    {
+                                                        speakers.find(
+                                                            (speaker) =>
+                                                                speaker.code == item,
+                                                        )?.name
+                                                    }
+                                                </span>
+                                            </>
+                                        ))}
+                                        <span class="icon">
+                                            <i class="fa-solid fa-tags" />
+                                        </span>
+                                        <span>
+                                            {
+                                                tracks.find(
+                                                    (track) => track.id == session.track,
+                                                )?.name[lang]
+                                            }
+                                        </span>
+                                        <span class="icon">
+                                            <i class="fa-solid fa-language" />
+                                        </span>
+                                        <span>{session.content_locale}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 ))}
             </>
         ))
     }
 </div>
+
+<style>
+    .session-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .session-card-link .card {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .session-card-link:hover .card {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+            0 0px 0 1px rgba(10, 10, 10, 0.02);
+    }
+</style>
