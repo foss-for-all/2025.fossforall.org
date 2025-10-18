@@ -3,10 +3,11 @@ const { lang } = Astro.props;
 import { renderMarkdown } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
 import { createHash } from 'crypto';
-import type { Booth, BoothSpeaker } from "@/models/Booth";
+import type { Booth, BoothAnswer, BoothSpeaker } from "@/models/Booth";
 import { BoothCardAndModal } from "@/components/BoothCardAndModal";
 
 const config = WebsiteConfig(lang);
+const LOGO_QUESTION_ID = 6; // The ID for the 'Organization Logo' question
 
 // Fetch booths data (speakers in the 2025-call-for-booths event)
 const speakersResponse = await fetch(
@@ -20,8 +21,9 @@ const speakersResponse = await fetch(
 const boothSpeakers: BoothSpeaker[] = (await speakersResponse.json())["results"];
 
 // Fetch booths data (submissions in the 2025-call-for-booths event)
+// Include questions to get answers with uploaded files (logos)
 const boothsResponse = await fetch(
-    `${config.pretalx.baseUrl}/api/events/2025-call-for-booths/submissions/?state=confirmed&state=accepted`,
+    `${config.pretalx.baseUrl}/api/events/2025-call-for-booths/submissions/?state=confirmed&state=accepted&questions=3,6&expand=answers.question`,
     {
         headers: new Headers({
             Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
@@ -32,16 +34,29 @@ const boothsResponse = await fetch(
 const boothsData = await boothsResponse.json();
 let booths: Booth[] = boothsData?.results || [];
 
-// Process markdown in descriptions at build time
+// Process markdown and extract logos at build time
 if (booths.length > 0) {
-    booths = await Promise.all(booths.map(async (booth) => ({
-        ...booth,
-        abstract: await renderMarkdown(booth.abstract),
-        description: await renderMarkdown(booth.description),
-        speakerDetails: booth.speakers.map(speakerId =>
-            boothSpeakers.find(speaker => speaker.code === speakerId)
-        ).filter(Boolean) as BoothSpeaker[],
-    })));
+    booths = await Promise.all(booths.map(async (booth) => {
+        let logoUrl = null;
+        if (booth.answers && booth.answers.length > 0) {
+            const logoAnswer = booth.answers.find(
+                (answer: BoothAnswer) => answer.question.id === LOGO_QUESTION_ID && answer.answer_file
+            );
+            if (logoAnswer) {
+                logoUrl = logoAnswer.answer_file;
+            }
+        }
+
+        return {
+            ...booth,
+            abstract: await renderMarkdown(booth.abstract),
+            description: await renderMarkdown(booth.description),
+            speakerDetails: booth.speakers.map(speakerId =>
+                boothSpeakers.find(speaker => speaker.code === speakerId)
+            ).filter(Boolean) as BoothSpeaker[],
+            logo: logoUrl,
+        };
+    }));
 }
 ---
 

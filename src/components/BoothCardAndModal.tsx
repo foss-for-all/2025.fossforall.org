@@ -44,6 +44,23 @@ export function BoothCardAndModal({
   return (
     <div className="column is-one-third">
       <div className="card" onClick={openModal} style={{ cursor: 'pointer', height: '100%' }}>
+        {booth.logo && (
+          <div className="card-image">
+            <figure className="image">
+              <img
+                src={booth.logo}
+                alt={booth.title}
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  objectFit: 'contain',
+                  backgroundColor: '#f5f5f5',
+                  padding: '1rem',
+                }}
+              />
+            </figure>
+          </div>
+        )}
         <div className="card-content" style={{
           display: 'flex',
           flexDirection: 'column',
