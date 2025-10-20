@@ -59,7 +59,8 @@ const sessionResponse = await fetch(
         }),
     },
 );
-const sessions: Submission[] = (await sessionResponse.json())["results"];
+const sessionData = await sessionResponse.json();
+const sessions: Submission[] = sessionData?.results || [];
 
 const speakerResponse = await fetch(
     `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`,
@@ -69,7 +70,8 @@ const speakerResponse = await fetch(
         }),
     },
 );
-const speakers: Speaker[] = (await speakerResponse.json())["results"];
+const speakerData = await speakerResponse.json();
+const speakers: Speaker[] = speakerData?.results || [];
 
 const trackResponse = await fetch(
     `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/tracks/`,
@@ -79,7 +81,8 @@ const trackResponse = await fetch(
         }),
     },
 );
-const tracks: Track[] = (await trackResponse.json())["results"];
+const trackData = await trackResponse.json();
+const tracks: Track[] = trackData?.results || [];
 
 let submissionTypes: SubmissionType[] = [];
 try {

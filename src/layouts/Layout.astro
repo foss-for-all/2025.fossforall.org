@@ -3,6 +3,7 @@ import "@/styles/global.scss";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import F4ALogo from "@/assets/favicon.svg";
+import OGImage from "@/assets/og-image.png";
 import { WebsiteConfig } from "@/config";
 import { getLangFromUrl, getUrlWithoutLang } from "@/i18n/utils";
 import type { ui } from "@/i18n/ui";
@@ -13,12 +14,20 @@ const page = getUrlWithoutLang(Astro.url);
 type Props = {
     title?: string;
     description?: string;
+    ogImage?: string;
+    ogType?: string;
 };
 
-const { title, description } = Astro.props as Props;
+const { title, description, ogImage, ogType } = Astro.props as Props;
 
 const config = WebsiteConfig(l);
 const meta = config.metadata;
+
+const pageTitle = title ? `${title} | ${meta.title}` : meta.title;
+const pageDescription = description || meta.description;
+const pageImage = ogImage || OGImage.src;
+const pageType = ogType || "website";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -28,8 +37,26 @@ const meta = config.metadata;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href={meta.faviconSrc} />
         <meta name="generator" content={Astro.generator} />
-        <title>{title ? `${title} | ${meta.title}` : meta.title}</title>
-        <meta name="description" content={description || meta.description} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+
+        <!-- OpenGraph meta tags -->
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content={pageType} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:image" content={pageImage} />
+        <meta property="og:locale" content={l === "ko" ? "ko_KR" : "en_US"} />
+        <meta property="og:site_name" content="FOSS for All Conference 2025" />
+
+        <!-- Twitter Card meta tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pageImage} />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href={canonicalURL} />
     </head>
     <body>
         <Header

@@ -32,8 +32,10 @@ async function fetchAll(url: string, headers: Headers): Promise<any[]> {
     while (nextUrl) {
         const response = await fetch(nextUrl, { headers });
         const data = await response.json();
-        results = results.concat(data.results);
-        nextUrl = data.next;
+        if (data?.results) {
+            results = results.concat(data.results);
+        }
+        nextUrl = data?.next || null;
     }
     return results;
 }

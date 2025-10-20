@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://2025.fossforall.org',
   integrations: [react(), mdx()],
   i18n: {
     locales: ["ko", "en"],
