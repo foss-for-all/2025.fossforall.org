@@ -46,7 +46,9 @@ export function BoothCardAndModal({
       <div className="card" onClick={openModal} style={{ cursor: 'pointer', height: '100%' }}>
         {booth.logo && (
           <div className="card-image">
-            <figure className="image">
+            <figure className="image" style={{
+              backgroundColor: '#f5f5f5',
+            }}>
               <img
                 src={booth.logo}
                 alt={booth.title}
@@ -54,8 +56,8 @@ export function BoothCardAndModal({
                   width: '100%',
                   height: '200px',
                   objectFit: 'contain',
-                  backgroundColor: '#f5f5f5',
                   padding: '0.5rem',
+                  transform: booth.title === 'DeepComputing' ? 'scale(2.5)' : 'none',
                 }}
               />
             </figure>
