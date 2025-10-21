@@ -55,7 +55,7 @@ export function BoothCardAndModal({
                   height: '200px',
                   objectFit: 'contain',
                   backgroundColor: '#f5f5f5',
-                  padding: '1rem',
+                  padding: '0.5rem',
                 }}
               />
             </figure>
@@ -78,12 +78,12 @@ export function BoothCardAndModal({
               flex: 1,
               overflow: 'hidden',
               display: '-webkit-box',
-              WebkitLineClamp: 3,
+              WebkitLineClamp: 5,
               WebkitBoxOrient: 'vertical',
               fontSize: '0.95em',
               lineHeight: '1.4',
             }}
-            dangerouslySetInnerHTML={{ __html: booth.abstract }}
+            dangerouslySetInnerHTML={{ __html: booth.abstract + ' ' + booth.description }}
           />
         </div>
       </div>
