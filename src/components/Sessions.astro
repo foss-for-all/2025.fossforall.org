@@ -107,12 +107,13 @@ const typeIdToName: { [key: number]: string } = {
     8: "Lightning Talk",
 };
 
-// Find keynote speakers (Hong Minhee and RichiH)
+// Find keynote speakers
 const keynoteSpakers = speakers
     .filter(
         (speaker) =>
             speaker.name.includes("Hong Minhee") ||
-            speaker.name.includes("RichiH"),
+            speaker.name.includes("RichiH") ||
+            speaker.name.includes("이세현"),
     )
     .map((speaker) => speaker.code);
 
