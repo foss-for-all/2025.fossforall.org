@@ -5,9 +5,14 @@ import { WebsiteConfig } from "@/config";
 import { createHash } from 'crypto';
 import type { Booth, BoothAnswer, BoothSpeaker } from "@/models/Booth";
 import { BoothCardAndModal } from "@/components/BoothCardAndModal";
+import { SponsorsList } from "@/data/sponsors";
 
 const config = WebsiteConfig(lang);
 const LOGO_QUESTION_ID = 6; // The ID for the 'Organization Logo' question
+
+// Get all sponsor names
+const sponsors = SponsorsList(lang);
+const sponsorNames = sponsors.flatMap(tier => tier.items.map(sponsor => sponsor.name));
 
 // Fetch booths data (speakers in the 2025-call-for-booths event)
 const speakersResponse = await fetch(
@@ -58,21 +63,61 @@ if (booths.length > 0) {
         };
     }));
 }
+
+// Categorize booths into community and sponsor booths based on booth name
+const sponsorBooths = booths
+    .filter(booth => sponsorNames.includes(booth.title))
+    .sort((a, b) => a.title.localeCompare(b.title));
+
+const communityBooths = booths
+    .filter(booth => !sponsorNames.includes(booth.title))
+    .sort((a, b) => a.title.localeCompare(b.title));
 ---
 
-<div class="columns is-multiline">
-    {
-        booths.map((booth: Booth) => (
-            <BoothCardAndModal
-                client:load
-                booth={booth}
-                config={config}
-                lang={lang}
-                gravatarHashes={booth.speakerDetails?.map(speaker => ({
-                    code: speaker.code,
-                    hash: createHash("SHA256").update(speaker.email, "utf-8").digest("hex")
-                })) || []}
-            />
-        ))
-    }
-</div>
+{communityBooths.length > 0 && (
+    <div style="margin-bottom: 3rem;">
+        <h2 class="title is-3" style="margin-bottom: 1.5rem;">
+            {lang === 'ko' ? '커뮤니티 부스' : 'Community Booths'}
+        </h2>
+        <div class="columns is-multiline">
+            {
+                communityBooths.map((booth: Booth) => (
+                    <BoothCardAndModal
+                        client:load
+                        booth={booth}
+                        config={config}
+                        lang={lang}
+                        gravatarHashes={booth.speakerDetails?.map(speaker => ({
+                            code: speaker.code,
+                            hash: createHash("SHA256").update(speaker.email, "utf-8").digest("hex")
+                        })) || []}
+                    />
+                ))
+            }
+        </div>
+    </div>
+)}
+
+{sponsorBooths.length > 0 && (
+    <div>
+        <h2 class="title is-3" style="margin-bottom: 1.5rem;">
+            {lang === 'ko' ? '후원사 부스' : 'Sponsor Booths'}
+        </h2>
+        <div class="columns is-multiline">
+            {
+                sponsorBooths.map((booth: Booth) => (
+                    <BoothCardAndModal
+                        client:load
+                        booth={booth}
+                        config={config}
+                        lang={lang}
+                        gravatarHashes={booth.speakerDetails?.map(speaker => ({
+                            code: speaker.code,
+                            hash: createHash("SHA256").update(speaker.email, "utf-8").digest("hex")
+                        })) || []}
+                    />
+                ))
+            }
+        </div>
+    </div>
+)}
