@@ -35,4 +35,8 @@ export const PatronList = [
     name: "Andrew Zah",
     affiliation: "Open Source Systems",
   },
+  {
+    name: "이병준",
+    affiliation: "주식회사온블록",
+  },
 ];
