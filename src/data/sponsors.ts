@@ -17,6 +17,8 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       sponsorClassName: "GOLD",
       gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
       imageHeight: "10rem",
+      containerWidth: "45rem",
+      containerHeight: "35rem",
       items: [
         {
           name: "Couchbase",
@@ -30,6 +32,8 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       sponsorClassName: "SILVER",
       gridClasses: "has-4-cols-desktop has-3-cols-tablet has-2-cols-mobile",
       imageHeight: "9rem",
+      containerWidth: "27rem",
+      containerHeight: "21rem",
       items: [
         {
           name: "ONLYOFFICE",
@@ -51,6 +55,8 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       sponsorClassName: "BRONZE",
       gridClasses: "has-5-cols-desktop has-4-cols-tablet has-3-cols-mobile",
       imageHeight: "8rem",
+      containerWidth: "22rem",
+      containerHeight: "17rem",
       items: [
         {
           name: "Rainlab",
@@ -84,9 +90,11 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       ],
     },
     {
-      sponsorClassName: "Government",
+      sponsorClassName: "Public Partner",
       gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
       imageHeight: "15rem",
+      containerWidth: "40rem",
+      containerHeight: "31rem",
       items: [
         {
           name: "OpenUP (NIPA)",

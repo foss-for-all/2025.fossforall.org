@@ -7,7 +7,11 @@ interface SponsorLogoWithModalProps {
         descriptionMarkdown: string;
         link: string;
     };
-    group: { imageHeight: string | number };
+    group: {
+        imageHeight: string | number;
+        containerWidth?: string;
+        containerHeight?: string;
+    };
 }
 
 export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps) {
@@ -23,27 +27,32 @@ export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps)
     }
 
     return (
-        <div>
-<img
-  src={item.logoSrc}
-  alt={item.name}
-  style={{
-    height: 'auto',
-    maxHeight: group.imageHeight,
-    width: 'auto',
-    minHeight: group.imageHeight,
-    margin: '0 auto',
-    display: 'block',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease-in-out',
-    opacity: isHovered ? 0.8 : 1,
-    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-    filter: isHovered ? 'brightness(1.1)' : 'brightness(1)',
-  }}
-  onClick={openModal}
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
-/>
+        <div style={{
+            width: group.containerWidth || '27rem',
+            height: group.containerHeight || '21rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '1.5rem',
+            margin: '0.75rem',
+        }}>
+            <img
+                src={item.logoSrc}
+                alt={item.name}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    opacity: isHovered ? 0.8 : 1,
+                    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                    filter: isHovered ? 'brightness(1.1)' : 'brightness(1)',
+                }}
+                onClick={openModal}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            />
             <div className={`modal ${isActive ? 'is-active' : ''}`}>
                 <div className="modal-background" onClick={closeModal}></div>
                 <div className="modal-card">
