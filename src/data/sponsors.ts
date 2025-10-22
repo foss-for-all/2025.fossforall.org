@@ -7,11 +7,11 @@ import DeepComputingLogo from "@/assets/sponsors/DeepComputing.svg";
 import NipaLogo from "@/assets/sponsors/nipa.svg";
 import StadiaMapsLogo from "@/assets/sponsors/stadiamaps.svg";
 import OpdcLogo from "@/assets/sponsors/opdc.svg";
+import RsefLogo from "@/assets/sponsors/rockylinux.png";
 
 import type { ui } from "@/i18n/ui";
 
 export const SponsorsList = (lang: keyof typeof ui) => {
-
   return [
     {
       sponsorClassName: "GOLD",
@@ -25,6 +25,12 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           descriptionMarkdown: `카우치베이스는 미국에 본사를 두고 있는 NoSQL 데이터 플랫폼으로, 국내에는 약 3년전에 진출 하였습니다. 국내외에서 다양한 레퍼런스를 가지고 있지만, 아직 국내 커뮤니티 혹은 현업들에서 인지도가 높은 플랫폼은 아닙니다. 무료로 사용할 수 있는 커뮤니티 버전을 기반으로 다양한 커뮤니티 그룹, 멤버, 현업 분들과 의사사통 하고자 합니다. `,
           logoSrc: CouchbaseLogo.src,
           link: "https://www.couchbase.com/",
+        },
+        {
+          name: "Rocky Linux",
+          descriptionMarkdown: `Rocky Linux is a free and open-source community-built Enterprise Linux distribution.`,
+          logoSrc: RsefLogo.src,
+          link: "https://rockylinux.org",
         },
       ],
     },
@@ -43,7 +49,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           logoSrc: OnlyofficeLogo.src,
           link: "https://www.onlyoffice.com",
         },
-         {
+        {
           name: "OPDC",
           descriptionMarkdown: `(사)오픈플랫폼 개발자커뮤니티(Open Platform Developer Community, OPDC)는 오픈플랫폼 및 이와 관련된 서비스의 개발 생산성과 품질을 향상시키고 관련 소프트웨어 개발자의 역량 강화와 상호 교류에 헌신하며, 오픈 소스 소프트웨어 개발과 확산을 위한 활동 지원을 통해 오픈 소스 기술참상에 기여함을 그 설립목적으로 활동을 수행 합니다`,
           logoSrc: OpdcLogo.src,
