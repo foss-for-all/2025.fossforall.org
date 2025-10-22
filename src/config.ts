@@ -17,7 +17,7 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
     pretalx: {
       baseUrl: "https://pretalx.fossforall.org",
       eventSlug: "2025",
-      keynoteSpeakers: ["XGEJRN", "LAY7R9", "NLNGX7"],
+      keynoteSpeakers: ["XGEJRN", "LAY7R9", "NLNGX7", "XLD3HJ"],
       speakersToExpose: [
         "XGEJRN",
         "LAY7R9",
@@ -37,6 +37,7 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
         "BSD9GZ",
         "RTQMVT",
         "HNECMJ",
+        "XLD3HJ",
       ],
     },
     navigation: {
