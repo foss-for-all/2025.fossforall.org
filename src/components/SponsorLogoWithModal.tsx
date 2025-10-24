@@ -41,7 +41,8 @@ export function SponsorLogoWithModal({ item, group }: SponsorLogoWithModalProps)
                 alt={item.name}
                 style={{
                     width: '100%',
-                    height: '100%',
+                    height: 'auto',
+                    maxHeight: group.imageHeight,
                     objectFit: 'contain',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease-in-out',

@@ -16,10 +16,10 @@ export const SponsorsList = (lang: keyof typeof ui) => {
   return [
     {
       sponsorClassName: "GOLD",
-      gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
-      imageHeight: "10rem",
-      containerWidth: "45rem",
-      containerHeight: "35rem",
+      gridClasses: "has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      imageHeight: "12rem",
+      containerWidth: "30rem",
+      containerHeight: "24rem",
       items: [
         {
           name: "Couchbase",
@@ -37,10 +37,10 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     },
     {
       sponsorClassName: "SILVER",
-      gridClasses: "has-4-cols-desktop has-3-cols-tablet has-2-cols-mobile",
-      imageHeight: "9rem",
-      containerWidth: "27rem",
-      containerHeight: "21rem",
+      gridClasses: "has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      imageHeight: "10rem",
+      containerWidth: "26rem",
+      containerHeight: "20rem",
       items: [
         {
           name: "ONLYOFFICE",
@@ -60,10 +60,10 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     },
     {
       sponsorClassName: "BRONZE",
-      gridClasses: "has-5-cols-desktop has-4-cols-tablet has-3-cols-mobile",
-      imageHeight: "8rem",
-      containerWidth: "22rem",
-      containerHeight: "17rem",
+      gridClasses: "has-4-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      imageHeight: "10rem",
+      containerWidth: "16rem",
+      containerHeight: "18rem",
       items: [
         {
           name: "Rainlab",
@@ -97,8 +97,8 @@ export const SponsorsList = (lang: keyof typeof ui) => {
       ],
     },
     {
-      sponsorClassName: "Meeting room sponsor",
-      gridClasses: "has-5-cols-desktop has-4-cols-tablet has-3-cols-mobile",
+      sponsorClassName: "MEETING SPACE SPONSOR",
+      gridClasses: "has-1-cols-desktop has-1-cols-tablet has-1-cols-mobile",
       imageHeight: "8rem",
       containerWidth: "22rem",
       containerHeight: "17rem",
@@ -113,7 +113,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     },
     {
       sponsorClassName: "Public Partner",
-      gridClasses: "has-3-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      gridClasses: "has-1-cols-desktop has-1-cols-tablet has-1-cols-mobile",
       imageHeight: "15rem",
       containerWidth: "40rem",
       containerHeight: "31rem",

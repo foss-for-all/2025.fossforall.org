@@ -20,18 +20,24 @@ sponsors = await Promise.all(sponsors.map(async (group) => ({
 { sponsors.map((group) => (
   <section>
     <h2 class="title is-size-3 mt-2 mb-1">{group.sponsorClassName}</h2>
-    <div style={`display: flex; justify-content: center; align-items: center; flex-wrap: wrap; ${group.sponsorClassName === 'BRONZE' ? 'max-width: 55rem; margin: 0 auto;' : ''}`}>
-      {group.items.map((item) => (
-        <SponsorLogoWithModal
-          client:load
-          item={item}
-          group={{
-            imageHeight: group.imageHeight,
-            containerWidth: group.containerWidth,
-            containerHeight: group.containerHeight
-          }}
-        />
-      ))}
+    <div class={`fixed-grid ${group.gridClasses}`}>
+      <div class="grid">
+        {group.items.map((item) => (
+          <div class="cell">
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <SponsorLogoWithModal
+                client:load
+                item={item}
+                group={{
+                  imageHeight: group.imageHeight,
+                  containerWidth: '100%',
+                  containerHeight: group.containerHeight
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 )) }

@@ -74,7 +74,7 @@ const speakersToExpose = config.pretalx.keynoteSpeakers;
         </div>
         <div class="container p-3">
             <h2 class="title is-size-2 mt-3 mb-5">{t("banner.speakers")}</h2>
-            <Speakers lang={lang} speakersToExpose={speakersToExpose} />
+            <Speakers lang={lang} speakersToExpose={speakersToExpose} hideTitles={true} />
             <a class="button m-1 is-large" href="./speakers">
                 <span>
                     {t("banner.speakers.more")}

@@ -1,5 +1,5 @@
 ---
-const { lang, speakersToExpose = [] } = Astro.props;
+const { lang, speakersToExpose = [], hideTitles = false } = Astro.props;
 import { useTranslations } from "@/i18n/utils";
 import { renderMarkdown } from "@/lib/utils";
 import { WebsiteConfig } from "@/config";
@@ -84,7 +84,7 @@ const keynoteSpeakers = speakers.filter(s => keynoteSpeakerCodes.includes(s.code
 const otherSpeakers = speakers.filter(s => !keynoteSpeakerCodes.includes(s.code));
 ---
 
-<h2 class="title is-2">{t('speakers.keynote')}</h2>
+{!hideTitles && <h2 class="title is-2">{t('speakers.keynote')}</h2>}
 <div class="columns is-multiline">
     {
         keynoteSpeakers
@@ -95,7 +95,7 @@ const otherSpeakers = speakers.filter(s => !keynoteSpeakerCodes.includes(s.code)
     }
 </div>
 
-<h2 class="title is-2">{t('speakers.general')}</h2>
+{!hideTitles && <h2 class="title is-2">{t('speakers.general')}</h2>}
 <div class="columns is-multiline">
     {
         otherSpeakers

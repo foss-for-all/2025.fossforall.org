@@ -66,7 +66,7 @@ export function SpeakerCardAndModal({
   }
 
   return (
-    <div className="column is-one-third">
+    <div className="column is-one-quarter">
       <div className="card" onClick={openModal} style={{ cursor: 'pointer', height: '100%' }}>
         <div className="card-image">
           <figure className="image is-square">

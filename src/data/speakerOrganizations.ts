@@ -20,4 +20,12 @@ export const SpeakerOrganizations = [
     name: "이성민 (boltless)",
     organization: "tangled.org",
   },
+  {
+    name: "이세현",
+    organization: "Couchbase",
+  },
+  {
+    name: "장형기",
+    organization: "Tenstorrent",
+  },
 ];
