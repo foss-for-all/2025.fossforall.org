@@ -8,6 +8,7 @@ import NipaLogo from "@/assets/sponsors/nipa.svg";
 import StadiaMapsLogo from "@/assets/sponsors/stadiamaps.svg";
 import OpdcLogo from "@/assets/sponsors/opdc.svg";
 import RsefLogo from "@/assets/sponsors/rockylinux.png";
+import ModuLabsLogo from "@/assets/sponsors/modulabs.svg";
 
 import type { ui } from "@/i18n/ui";
 
@@ -92,6 +93,21 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           descriptionMarkdown: `Stadia Maps offers location APIs for humans. Thousands of companies of all sizes use Stadia Maps to contextualize their data on a map, solve logistics problems, build fitness experiences, and more. We back our customers up with no-surprise billing, world-class reliability, strong privacy guarantees, and real human support.`,
           logoSrc: StadiaMapsLogo.src,
           link: "https://stadiamaps.com/",
+        },
+      ],
+    },
+    {
+      sponsorClassName: "Meeting room sponsor",
+      gridClasses: "has-5-cols-desktop has-4-cols-tablet has-3-cols-mobile",
+      imageHeight: "8rem",
+      containerWidth: "22rem",
+      containerHeight: "17rem",
+      items: [
+        {
+          name: "모두의연구소",
+          descriptionMarkdown: `모두의연구소는 AI와 SW 교육을 제공하며, 연구 커뮤니티와 함께 성장할 수 있는 플랫폼입니다. 부트캠프, 국비지원 교육, 기업 맞춤형 교육 등을 통해 실무 중심 학습을 경험하세요.`,
+          logoSrc: ModuLabsLogo.src,
+          link: "https://modulabs.co.kr/",
         },
       ],
     },
