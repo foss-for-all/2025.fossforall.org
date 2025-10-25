@@ -9,6 +9,7 @@ import StadiaMapsLogo from "@/assets/sponsors/stadiamaps.svg";
 import OpdcLogo from "@/assets/sponsors/opdc.svg";
 import RsefLogo from "@/assets/sponsors/rockylinux.png";
 import ModuLabsLogo from "@/assets/sponsors/modulabs.svg";
+import TenstorrentLogo from "@/assets/sponsors/tenstorrent.svg";
 
 import type { ui } from "@/i18n/ui";
 
@@ -32,6 +33,12 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           descriptionMarkdown: `Rocky Linux is a free and open-source community-built Enterprise Linux distribution.`,
           logoSrc: RsefLogo.src,
           link: "https://rockylinux.org",
+        },
+        {
+          name: "Tenstorrent",
+          descriptionMarkdown: `Tenstorrent builds high-performance AI computers based on RISC-V architecture and has an open-source software stack. Led by veteran CPU architect Jim Keller, Tenstorrent delivers full-stack AI compute solutions: chips, workstations, systems, software, and IP licensing.`,
+          logoSrc: TenstorrentLogo.src,
+          link: "https://tenstorrent.com/",
         },
       ],
     },
