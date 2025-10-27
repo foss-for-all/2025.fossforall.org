@@ -17,7 +17,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
   return [
     {
       sponsorClassName: "GOLD",
-      gridClasses: "has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      gridClasses: "has-3-cols-desktop has-3-cols-tablet has-1-cols-mobile",
       imageHeight: "12rem",
       containerWidth: "30rem",
       containerHeight: "24rem",
@@ -45,7 +45,7 @@ export const SponsorsList = (lang: keyof typeof ui) => {
     {
       sponsorClassName: "SILVER",
       gridClasses: "has-2-cols-desktop has-2-cols-tablet has-1-cols-mobile",
-      imageHeight: "10rem",
+      imageHeight: "8rem",
       containerWidth: "26rem",
       containerHeight: "20rem",
       items: [
