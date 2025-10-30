@@ -39,4 +39,8 @@ export const PatronList = [
     name: "이병준",
     affiliation: "주식회사온블록",
   },
+  {
+    name: "Richard Pannek",
+    affiliation: "Luxoft"
+  }
 ];
