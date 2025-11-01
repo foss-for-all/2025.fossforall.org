@@ -41,6 +41,10 @@ export const PatronList = [
   },
   {
     name: "Richard Pannek",
-    affiliation: "Luxoft"
-  }
+    affiliation: "Luxoft",
+  },
+  {
+    name: "Ciarán O'Riordan ( 키런 어리어단 )",
+    affiliation: "Eclipse Foundation",
+  },
 ];
