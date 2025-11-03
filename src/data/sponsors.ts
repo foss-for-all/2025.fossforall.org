@@ -10,6 +10,8 @@ import OpdcLogo from "@/assets/sponsors/opdc.svg";
 import RsefLogo from "@/assets/sponsors/rockylinux.png";
 import ModuLabsLogo from "@/assets/sponsors/modulabs.svg";
 import TenstorrentLogo from "@/assets/sponsors/tenstorrent.svg";
+import BylineNetworkLogo from "@/assets/sponsors/bylinenetwork.webp";
+import YozmITLogo from "@/assets/sponsors/yozmit.svg";
 
 import type { ui } from "@/i18n/ui";
 
@@ -130,6 +132,27 @@ export const SponsorsList = (lang: keyof typeof ui) => {
           descriptionMarkdown: `정보통신산업진흥원(NIPA)의 산하 조직인 OpenUP(오픈소스 소프트웨어 통합지원센터)은, 오픈소스SW를 개발, 공유, 활용하기를 원하는 개발자, 기업, 정부를 지원하고, 수요(기업, 공공기관)와 공급(개발자, 기업)의 선순환 구조를 이루어 오픈소스SW의 활성화 허브 역할을 수행하고 있습니다.`,
           logoSrc: NipaLogo.src,
           link: "https://oss.kr/",
+        },
+      ],
+    },
+    {
+      sponsorClassName: "Media Partner",
+      gridClasses: "has-4-cols-desktop has-2-cols-tablet has-1-cols-mobile",
+      imageHeight: "10rem",
+      containerWidth: "16rem",
+      containerHeight: "18rem",
+      items: [
+        {
+          name: "Byline Network",
+          descriptionMarkdown: `바이라인네트워크는 기사에 대한 책임과 자부심을 상징하는 '바이라인'을 내건 전문 기자들이 모여 만든 새로운 미디어 네트워크입니다. 현재 트래픽을 위한 저품질 기사 양산 등 지속 불가능한 언론 환경에 맞서, 전문성과 저널리즘이 살아있는 콘텐츠의 필요성을 강조합니다. 바이라인네트워크는 전문 기자들의 멀티채널네트워크(MCN)를 지향하며, 새로운 언론 모델을 구축하기 위해 뜻을 함께할 기자들의 연대를 모색하고 있습니다.`,
+          logoSrc: BylineNetworkLogo.src,
+          link: "https://byline.network",
+        },
+        {
+          name: "요즘IT",
+          descriptionMarkdown: `요즘IT는 IT업계 현업 실무 전문가들이 경험과 지식, 인사이트를 나누는 콘텐츠 플랫폼입니다. 좋은 콘텐츠 제공자, 신뢰할 만한 콘텐츠, 독자를 연결해 IT업계 생태계가 하나의 학습하는 조직으로서 선순환 성장하는 데 기여하고자 합니다. 해결하고 싶은 실무 문제, 커리어와 성장 고민 등 일하며 만나는 모든 문제를 각자가 필요에 따라 스스로 찾고 적용할 ‘실무 라이브러리’가 되고자 합니다.`,
+          logoSrc: YozmITLogo.src,
+          link: "https://yozm.wishket.com/magazine/",
         },
       ],
     },
