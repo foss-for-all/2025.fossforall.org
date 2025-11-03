@@ -40,6 +40,26 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
         "XLD3HJ",
         "TEPGGW",
       ],
+      boothsToExpose: [
+        "3RUHK7", // Couchbase
+        "7NL7AH", // Stadia Maps
+        "87YNHQ", // ExpressVPN
+        "8V3ABG", // DeepComputing
+        "9DAW8F", // OpenStreetMap 한국커뮤니티
+        "CAWM3E", // 코드포코리아
+        "CVYWWM", // VideoLAN
+        "LGCEA7", // Rainlab
+        "MFPV33", // OPDC
+        "NWUYLR", // Rocky Linux
+        "SGC3XD", // OpenUP (NIPA)
+        "U9KXHL", // OSPN OpenSource People Network Japan
+        "UGDFHV", // Debian
+        "UL8P8M", // 한국 스프링 사용자 모임
+        "VLELTR", // ONLYOFFICE
+        "VWBW8T", // Tenstorrent
+        "YFSBEM", // 우분투 한국 커뮤니티
+        "Z9UYRU", // COSCUP
+      ],
     },
     navigation: {
       logoSrc: F4ALogo.src,

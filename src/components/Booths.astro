@@ -28,7 +28,7 @@ const boothSpeakers: BoothSpeaker[] = (await speakersResponse.json())["results"]
 // Fetch booths data (submissions in the 2025-call-for-booths event)
 // Include questions to get answers with uploaded files (logos)
 const boothsResponse = await fetch(
-    `${config.pretalx.baseUrl}/api/events/2025-call-for-booths/submissions/?state=confirmed&state=accepted&questions=3,6&expand=answers.question`,
+    `${config.pretalx.baseUrl}/api/events/2025-call-for-booths/submissions/?questions=3,6&expand=answers.question`,
     {
         headers: new Headers({
             Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
@@ -38,6 +38,9 @@ const boothsResponse = await fetch(
 
 const boothsData = await boothsResponse.json();
 let booths: Booth[] = boothsData?.results || [];
+
+// Filter booths by the configured boothsToExpose list
+booths = booths.filter(booth => config.pretalx.boothsToExpose?.includes(booth.code));
 
 // Process markdown and extract logos at build time
 if (booths.length > 0) {
