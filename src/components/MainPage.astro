@@ -40,6 +40,7 @@ const speakersToExpose = config.pretalx.keynoteSpeakers;
                         <h1 class="is-size-1">Coexist with Open Source</h1>
                         <h1 class="is-size-1">{t("home.hero.date")}</h1>
                         <h1 class="is-size-1">{t("home.hero.venue")}</h1>
+                        <p>{t("home.hero.notice")}</p>
                         <hr />
                         <a
                             class="button is-large m-1 is-primary"
@@ -74,7 +75,11 @@ const speakersToExpose = config.pretalx.keynoteSpeakers;
         </div>
         <div class="container p-3">
             <h2 class="title is-size-2 mt-3 mb-5">{t("banner.speakers")}</h2>
-            <Speakers lang={lang} speakersToExpose={speakersToExpose} hideTitles={true} />
+            <Speakers
+                lang={lang}
+                speakersToExpose={speakersToExpose}
+                hideTitles={true}
+            />
             <a class="button m-1 is-large" href="./speakers">
                 <span>
                     {t("banner.speakers.more")}

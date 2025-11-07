@@ -22,6 +22,7 @@ export default {
     "home.hero.sponsor": "후원사로 참여하기",
     "home.hero.register": "참가등록",
     "home.hero.discord": "디스코드",
+    "home.hero.notice": "사전등록 마감, 현장등록 가능합니다.",
     "footer.copyright":
       "© 2025-Present FOSS for All. 별도 고지가 없는 경우, 콘텐츠는 CC BY 4.0 소스코드는 MIT 라이센스 아래 이용 가능.",
     "footer.contactEmail": "이메일로 연락하기",
