@@ -16,6 +16,7 @@ export default {
     "nav.speakers": "연사",
     "nav.sessions": "세션",
     "nav.booths": "부스 목록",
+    "nav.translation": "동시통역",
     "home.hero.date": "2025년 11월 8일",
     "home.hero.venue": "광운대학교",
     "home.hero.cfp": "발표/부스 지원하기",

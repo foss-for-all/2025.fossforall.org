@@ -93,6 +93,10 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
               href: translatePath(`/social-events/`),
             },
             { divider: true },
+            {
+              label: t("nav.translation"),
+              href: translatePath(`/live-translation/`),
+            },
             { label: t("nav.cfp"), href: translatePath(`/cfp/`) },
           ],
         },

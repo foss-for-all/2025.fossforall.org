@@ -16,6 +16,7 @@ export default {
     "nav.speakers": "Speakers",
     "nav.sessions": "Sessions",
     "nav.booths": "Booths",
+    "nav.translation": "Live translation",
     "home.hero.date": "8th November 2025",
     "home.hero.venue": "Kwangwoon University",
     "home.hero.cfp": "Propose session or booth",
