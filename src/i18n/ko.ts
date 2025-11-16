@@ -39,5 +39,7 @@ export default {
     "speakers.presenting": "발표",
     "speakers.unknownTrack": "미정",
     "booth.organizers": "소속",
+    "session.details": "상세 정보",
+    "session.feedback": "피드백",
   },
 };

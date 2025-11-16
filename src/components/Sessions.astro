@@ -1,8 +1,10 @@
 ---
 const { lang } = Astro.props;
 import { WebsiteConfig } from "@/config";
+import { useTranslations } from "@/i18n/utils";
 
 const config = WebsiteConfig(lang);
+const t = useTranslations(lang);
 
 interface Submission {
     code: string;
@@ -179,47 +181,66 @@ const sortedGroups = Object.entries(groupedSessions).sort((a, b) => {
                 </div>
                 {groupSessions.map((session: Submission) => (
                     <div class="column is-full">
-                        <a
-                            href={`${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}`}
-                            class="session-card-link"
-                        >
-                            <div class="card">
-                                <div class="card-content">
-                                    <p class="title is-4">{session.title}</p>
-                                    <div class="content">
-                                        {session.speakers.map((item) => (
-                                            <>
-                                                <span class="icon">
-                                                    <i class="fa-solid fa-person" />
-                                                </span>
-                                                <span>
-                                                    {
-                                                        speakers.find(
-                                                            (speaker) =>
-                                                                speaker.code == item,
-                                                        )?.name
-                                                    }
-                                                </span>
-                                            </>
-                                        ))}
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title is-4">{session.title}</p>
+                                <div class="content">
+                                    {session.speakers.map((item) => (
+                                        <>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-person" />
+                                            </span>
+                                            <span>
+                                                {
+                                                    speakers.find(
+                                                        (speaker) =>
+                                                            speaker.code == item,
+                                                    )?.name
+                                                }
+                                            </span>
+                                        </>
+                                    ))}
+                                    <span class="icon">
+                                        <i class="fa-solid fa-tags" />
+                                    </span>
+                                    <span>
+                                        {
+                                            tracks.find(
+                                                (track) => track.id == session.track,
+                                            )?.name[lang]
+                                        }
+                                    </span>
+                                    <span class="icon">
+                                        <i class="fa-solid fa-language" />
+                                    </span>
+                                    <span>{session.content_locale}</span>
+                                </div>
+                                <div class="buttons" style="margin-top: 1rem;">
+                                    <a
+                                        href={`${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}`}
+                                        class="button is-link is-outlined"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         <span class="icon">
-                                            <i class="fa-solid fa-tags" />
+                                            <i class="fa-solid fa-circle-info" />
                                         </span>
-                                        <span>
-                                            {
-                                                tracks.find(
-                                                    (track) => track.id == session.track,
-                                                )?.name[lang]
-                                            }
-                                        </span>
+                                        <span>{t('session.details')}</span>
+                                    </a>
+                                    <a
+                                        href={`${config.pretalx.baseUrl}/${config.pretalx.eventSlug}/talk/${session.code}/feedback/`}
+                                        class="button is-primary"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         <span class="icon">
-                                            <i class="fa-solid fa-language" />
+                                            <i class="fa-solid fa-comment" />
                                         </span>
-                                        <span>{session.content_locale}</span>
-                                    </div>
+                                        <span>{t('session.feedback')}</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 ))}
             </>
@@ -228,18 +249,11 @@ const sortedGroups = Object.entries(groupedSessions).sort((a, b) => {
 </div>
 
 <style>
-    .session-card-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .session-card-link .card {
-        cursor: pointer;
+    .card {
         transition: transform 0.2s ease;
     }
 
-    .session-card-link:hover .card {
+    .card:hover {
         transform: translateY(-2px);
         box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
             0 0px 0 1px rgba(10, 10, 10, 0.02);
