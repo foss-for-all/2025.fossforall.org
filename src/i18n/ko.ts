@@ -40,6 +40,7 @@ export default {
     "speakers.unknownTrack": "미정",
     "booth.organizers": "소속",
     "session.details": "상세 정보",
+    "nav.team": "준비한 사람들",
     "session.feedback": "피드백",
   },
 };

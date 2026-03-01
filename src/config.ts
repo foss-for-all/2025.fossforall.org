@@ -75,6 +75,7 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
               label: t("nav.venueSafety"),
               href: translatePath(`/venue-safety/`),
             },
+            { label: t("nav.team"), href: translatePath(`/team/`) },
           ],
         },
         {

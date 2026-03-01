@@ -41,6 +41,7 @@ export default {
     "speakers.unknownTrack": "Unknown",
     "booth.organizers": "Organizers",
     "session.details": "Details",
+    "nav.team": "Team",
     "session.feedback": "Feedback",
   },
 };
