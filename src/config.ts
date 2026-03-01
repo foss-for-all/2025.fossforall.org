@@ -98,7 +98,6 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
               label: t("nav.translation"),
               href: translatePath(`/live-translation/`),
             },
-            { label: t("nav.cfp"), href: translatePath(`/cfp/`) },
           ],
         },
         {
@@ -132,10 +131,6 @@ export const WebsiteConfig = (lang: keyof typeof ui) => {
           {
             label: "fossforall.org",
             href: "https://fossforall.org",
-          },
-          {
-            label: "🎟️ " + t("home.hero.register"),
-            href: "https://event-us.kr/fossforall/event/110400",
           },
           {
             label: languages[otherLang as keyof typeof ui],
