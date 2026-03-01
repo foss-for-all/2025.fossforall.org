@@ -42,5 +42,6 @@ export default {
     "session.details": "상세 정보",
     "nav.team": "준비한 사람들",
     "session.feedback": "피드백",
+    "session.video": "영상 보기",
   },
 };

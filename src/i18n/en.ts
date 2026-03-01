@@ -43,5 +43,6 @@ export default {
     "session.details": "Details",
     "nav.team": "Team",
     "session.feedback": "Feedback",
+    "session.video": "Watch Video",
   },
 };

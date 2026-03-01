@@ -6,6 +6,12 @@ import { useTranslations } from "@/i18n/utils";
 const config = WebsiteConfig(lang);
 const t = useTranslations(lang);
 
+interface SubmissionResource {
+    id: number;
+    resource: string;
+    description: string;
+}
+
 interface Submission {
     code: string;
     title: string;
@@ -21,7 +27,7 @@ interface Submission {
     content_locale: string;
     do_not_record: boolean;
     image: string;
-    resources: number[];
+    resources: SubmissionResource[];
     slots: number[];
     answers: number[];
 }
@@ -54,7 +60,7 @@ interface SubmissionType {
 }
 
 const sessionResponse = await fetch(
-    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed`,
+    `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/submissions/?state=confirmed&expand=resources`,
     {
         headers: new Headers({
             Authorization: "Token " + import.meta.env.PRETALX_TOKEN,
@@ -63,6 +69,16 @@ const sessionResponse = await fetch(
 );
 const sessionData = await sessionResponse.json();
 const sessions: Submission[] = sessionData?.results || [];
+
+const youtubeLinks: Record<string, string> = {};
+for (const session of sessions) {
+    for (const resource of session.resources || []) {
+        if (resource.resource && (resource.resource.includes('youtube.com') || resource.resource.includes('youtu.be'))) {
+            youtubeLinks[session.code] = resource.resource;
+            break;
+        }
+    }
+}
 
 const speakerResponse = await fetch(
     `${config.pretalx.baseUrl}/api/events/${config.pretalx.eventSlug}/speakers/`,
@@ -85,6 +101,7 @@ const trackResponse = await fetch(
 );
 const trackData = await trackResponse.json();
 const tracks: Track[] = trackData?.results || [];
+
 
 let submissionTypes: SubmissionType[] = [];
 try {
@@ -238,6 +255,19 @@ const sortedGroups = Object.entries(groupedSessions).sort((a, b) => {
                                         </span>
                                         <span>{t('session.feedback')}</span>
                                     </a>
+                                    {youtubeLinks[session.code] && (
+                                        <a
+                                            href={youtubeLinks[session.code]}
+                                            class="button is-danger is-outlined"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <span class="icon">
+                                                <i class="fa-brands fa-youtube" />
+                                            </span>
+                                            <span>{t('session.video')}</span>
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>
